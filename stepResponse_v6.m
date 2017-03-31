@@ -1,7 +1,6 @@
 clear all; format shortG; close all;
 load signale_2;
 
-%dummy edit
 
 sf = 25;		%smoothing coefficient
 zd = 0.04;		%noise amplitude for leading noise cut off
