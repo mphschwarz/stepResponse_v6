@@ -15,4 +15,5 @@ end
 xlabel('Real');
 ylabel('Imaginary');
 hold off;
+axis equal;
 end

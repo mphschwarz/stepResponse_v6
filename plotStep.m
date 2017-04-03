@@ -2,7 +2,7 @@
 function plotStep(t,x,y,t0,x0,tstart,tend,val,pmin,pmax,iter)
 
 %plots processed input data and calculated step response
-figure('Name','Simple Step Response');
+figure('Name','step response');
 plot(t,x);
 hold on;
 plot(t,y);
@@ -12,7 +12,7 @@ ylabel('signal');
 hold off;
 
 %plots raw input data, processed input data and step response
-figure('Name','Full Step Response')
+figure('Name','all data')
 plot(t0,x0);
 hold on;
 plot(t0(tstart:tend),x);
@@ -23,7 +23,7 @@ ylabel('signal');
 hold off;
 
 %plots calculated step response error for each number of poles
-figure('Name','Approximation error and Iterations')
+figure('Name','error/iter')
 subplot(1,2,1); title('Approximation error');
 plot(linspace(pmin,pmax,length(val)),val);
 xlabel('number of poles');

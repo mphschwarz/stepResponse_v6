@@ -11,16 +11,17 @@ yin = y11;		%sample data
 tin = t11;		%sample time
 
 c0 = [butterIniC(1,1,11); butterIniC(1,2,11); butterIniC(1,3,11); butterIniC(1,4,11); butterIniC(1,5,11);
-	butterIniC(1,6,11);	butterIniC(1,7,11);	butterIniC(1,8,11);	butterIniC(1,9,11);	butterIniC(1,10,11)];	
+	butterIniC(1,6,11);	butterIniC(1,7,11);	butterIniC(1,8,11);	butterIniC(1,9,11);	butterIniC(1,10,11)];
 
 %smoothes the input data and cuts off leading DC signals
 [t,x,x0,tstart,tend] = parseData(yin,tin,zd,sf,tstart,tend);
 %rescales time vector to match ripple base frequency
 [t,T] = normT(x,t);
 [n,c,y,val,iter,ef] = optStep(t,x,pmin,pmax,c0);
- 
+
 plotStep(t,x,y(n,:),tin,yin,tstart,tend,val,pmin,pmax,iter);
 plotPoles(c,n,n,1);
+
 
 %finds optimal number of poles
 %p: optimal number of poles
@@ -35,12 +36,12 @@ iter = zeros(1,10);
 ef = zeros(1,10)*2;
 parfor r=ns:ne
 	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r+1),c(r,:),options);
-	
+
 	%collects data on fminsearch run time
 	ef(r) = exitflag;
 	iter(r) = getfield(output, 'iterations')
-	
-	
+
+
 	y(r,:) = stepResponse(c(r,:),t,r+1);
 end
 %c = c(ns:ne,:);
