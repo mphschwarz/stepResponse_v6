@@ -16,7 +16,7 @@ c0 = [butterIniC(1,1,11); butterIniC(1,2,11); butterIniC(1,3,11); butterIniC(1,4
 %smoothes the input data and cuts off leading DC signals
 [t,x,x0,tstart,tend] = parseData(yin,tin,zd,sf,tstart,tend);
 %rescales time vector to match ripple base frequency
-[t,T] = normT(x,t);
+[t,x,T] = normT(x,t);
 [n,c,y,val,iter,ef] = optStep(t,x,pmin,pmax,c0);
  
 plotStep(t,x,y(n,:),tin,yin,tstart,tend,val,pmin,pmax,iter);
