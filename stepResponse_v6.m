@@ -5,7 +5,7 @@ sf = 25;		%smoothing coefficient
 zd = 0.04;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of poles
 pmax = 10;		%maximum number of poles
-tstart = 270;	%step time index (set to -1 for auto detect)
+tstart = 275;	%step time index (set to -1 for auto detect)
 tend = 2000;	%trailing data cut off (set to -1 for auto detect)
 yin = y11;		%sample data
 tin = t11;		%sample time
@@ -16,7 +16,7 @@ c0 = [butterIniC(1,1,11); butterIniC(1,2,11); butterIniC(1,3,11); butterIniC(1,4
 %smoothes the input data and cuts off leading DC signals
 [t,x,x0,tstart,tend] = parseData(yin,tin,zd,sf,tstart,tend);
 %rescales time vector to match ripple base frequency
-[t,x,T] = normT(x,t);
+[t,T] = normT(x,t);
 [n,c,y,val,iter,ef] = optStep(t,x,pmin,pmax,c0);
  
 plotStep(t,x,y(n,:),tin,yin,tstart,tend,val,pmin,pmax,iter);

@@ -23,13 +23,13 @@ if tend <= 0	%cuts off trailing noise if tend is unspecified
 		tend = tend - 1;
 	end
 end
-yend = mean(y(yend:end));
+yend = mean(y(tend:end));
 
 
 
 d0 = ystart;
 y0 = y(tstart:tend);
-y0 = (y0-ones(length(y0),1)*y0(1))/(yend-ystart);
+y0 = (y0-ones(length(y0),1)*y0(1))/(yend-y0(1));
 t0 = t(tstart:tend)-ones(1,length(y0))*t(tstart);
 x0 = x0(tstart:tend);
 end

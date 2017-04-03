@@ -1,5 +1,5 @@
 %rescales time vector to match base frequency of the step response
-function [t,x,T] = normT(x0,t0)
+function [t,T] = normT(x0,t0)
 x = movmean(x0,100);		%smoothes data
 [p,pi] = findpeaks(x);		%finds local maxima
 [p1,p1i] = max(p);			%finds largest local maximum
