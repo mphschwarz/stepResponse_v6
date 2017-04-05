@@ -2,10 +2,10 @@ clear vars; format shortG; close all;
 load signale_2;
 
 sf = 25;		%smoothing coefficient
-zd = 0.04;		%noise amplitude for leading noise cut off
+zd = 0.004;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of poles
 pmax = 10;		%maximum number of poles
-tstart = 275;	%step time index (set to -1 for auto detect)
+tstart = -1;	%step time index (set to -1 for auto detect)
 tend = 2000;	%trailing data cut off (set to -1 for auto detect)
 yin = y11;		%sample data
 tin = t11;		%sample time
