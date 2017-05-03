@@ -13,6 +13,6 @@ else
 	w = sqrt(real.^2 + imag.^2);
 	q = w./(2*abs(real));
 	c = [w; q]; c = c(:)';
-	c = [k,c,real(end),zeros(1,N-1-length(c)-1)];
+	c = [k,c,re(end),zeros(1,N-2-length(c))];
 end
 end
