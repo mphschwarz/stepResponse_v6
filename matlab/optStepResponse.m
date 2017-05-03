@@ -5,10 +5,10 @@ sf = 25;		%smoothing coefficient
 zd = 0.004;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of poles
 pmax = 10;		%maximum number of poles
-tstart = -1;	%step time index (set to -1 for auto detect)
+tstart = 280;	%step time index (set to -1 for auto detect)
 tend = 2000;	%trailing data cut off (set to -1 for auto detect)
-yin = y11;		%sample data
-tin = t11;		%sample time
+yin = y10;		%sample data
+tin = t10;		%sample time
 
 c0 = [butterIniC(1,1,11); butterIniC(1,2,11); butterIniC(1,3,11); butterIniC(1,4,11); butterIniC(1,5,11);
 	butterIniC(1,6,11);	butterIniC(1,7,11);	butterIniC(1,8,11);	butterIniC(1,9,11);	butterIniC(1,10,11)];
