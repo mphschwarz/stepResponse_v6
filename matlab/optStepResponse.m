@@ -35,7 +35,7 @@ y = ones(10,length(x));
 iter = zeros(1,10);
 ef = zeros(1,10)*2;
 parfor r=ns:ne
-	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r+1),c(r,:),options);
+	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r+1),butterIniC(1,r,11),options);
 
 	%collects data on fminsearch run time
 	ef(r) = exitflag;
@@ -68,11 +68,11 @@ qp = c(2:2:end);		%extracts qp_n
 
 for r=1:length(wp)
 	n = [1, wp(r)./qp(r), wp(r).^2];	%(s^2 + wp/qp*s + wp^2)
-	den = conv(n,den);					%multiplies poles
+	den = conv(n,den);			%multiplies poles
 end
 num = prod(wp.^2).*k;			%numerator of tf
 if odd == 1
-	num = num*abs(s);			%*realPole
+	num = num*abs(s);		%*realPole
 	den = conv(den,[1,-s]);		%*(s - sigma)
 end
 y = step(num,den,t);
