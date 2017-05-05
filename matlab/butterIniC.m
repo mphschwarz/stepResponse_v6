@@ -5,16 +5,19 @@
 % N: length of c-vector
 function c = butterIniC(k,n,N)
 if mod(n,2) == 0
-	re = cos(linspace(pi/2,3*pi/2,n)); re = [re(1:n/2); re(1:n/2)];
+
+	a = pi/2 + pi/2/n + pi/n*linspace(0,n-1,n);
+	re = cos(a); re = [re(1:n/2); re(1:n/2)];
 	re = re(:)';
-	im = sin(linspace(pi/2,3*pi/2,n)); im = [im(1:n/2); -im(1:n/2)];
+	im = sin(a); im = [im(1:n/2); -im(1:n/2)];
 	im = im(:)';
 
 	c = reImtowq(re,im,k,N);
 else
-	re = cos(linspace(pi/2,3*pi/2,n)); re = [re(1:(n-1)/2); re(1:(n-1)/2)];
+	a = pi/2 + pi/2/n + pi/n*linspace(0,n-1,n);
+	re = cos(a); re = [re(1:(n-1)/2); re(1:(n-1)/2)];
 	re = [re(:)',-1];
-	im = sin(linspace(pi/2,3*pi/2,n)); im = [im(1:(n-1)/2); -im(1:(n-1)/2)];
+	im = sin(a); im = [im(1:(n-1)/2); -im(1:(n-1)/2)];
 	im = [im(:)',0];
 	
 	c = reImtowq(re,im,k,N);
