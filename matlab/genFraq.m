@@ -24,7 +24,7 @@ end
 num = prod(wp.^2).*k;			%numerator of tf
 if odd == 1
 	num = num*abs(s);			%*realPole
-	den = conv(den,[1,-s]);		%*(s - sigma)
+	den = conv(den,[1,s]);		%*(s - sigma)
 end
 
 end
