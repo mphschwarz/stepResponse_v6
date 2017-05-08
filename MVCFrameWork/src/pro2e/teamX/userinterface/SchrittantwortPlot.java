@@ -60,14 +60,19 @@ public class SchrittantwortPlot extends JPanel {
 	}
 	
 
-	void setData(double[] x, double[] y) {
-		XYSeries series = new XYSeries("Schrittantwort");
-		for (int i = 1; i < x.length; i++) {
-			series.add(x[i], y[i]);
-		}
+	void setData(double[] x, double[] y, double [] t) {
+		XYSeries series1 = new XYSeries("Schrittantwort");
+		for (int i = 1; i < x.length; i++)
+			series1.add(t[i], x[i]);
+		
+		XYSeries series2 = new XYSeries("Schrittantwort");
+		for (int i = 1; i < y.length; i++)
+			series2.add(t[i], y[i]);
+			
 		XYPlot xyplot = chart.getXYPlot();
 		XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series);
+		dataset.addSeries(series1);
+		dataset.addSeries(series2);
 		xyplot.setDataset(dataset);
 	}
 

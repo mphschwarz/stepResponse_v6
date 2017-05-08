@@ -1,0 +1,14 @@
+import java.awt.Panel;
+import java.util.Observer;
+
+public class View extends Panel implements Observer {
+	private Controller controller;
+	private Model model;
+	
+	public View (Controller controller, Model model) {
+		this.controller = controller;
+		this.model = model;
+		
+	}
+
+}

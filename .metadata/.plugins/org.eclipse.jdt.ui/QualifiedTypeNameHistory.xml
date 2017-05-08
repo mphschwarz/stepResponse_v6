@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.awt.Frame"/>
+<fullyQualifiedTypeName name="java.awt.Panel"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="org.jfree.data.xy.DefaultXYDataset"/>
+<fullyQualifiedTypeName name="org.jfree.data.xy.XYSeriesCollection"/>
+<fullyQualifiedTypeName name="org.jfree.chart.axis.NumberAxis"/>
+<fullyQualifiedTypeName name="org.jfree.ui.ApplicationFrame"/>
+<fullyQualifiedTypeName name="org.jfree.chart.renderer.xy.XYSplineRenderer"/>
+<fullyQualifiedTypeName name="org.jfree.chart.plot.XYPlot"/>
+<fullyQualifiedTypeName name="org.jfree.chart.JFreeChart"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+</qualifiedTypeNameHistroy>
