@@ -13,5 +13,5 @@ else
 	q = w./(2*abs(real));
 	c = [w; q]; c = c(:)'; c = [c, re(end)];
 end
-	c = [k,c,zeros(1,N-1-length(c))];
+	c = [k,c,zeros(1,N-length(c))];
 end

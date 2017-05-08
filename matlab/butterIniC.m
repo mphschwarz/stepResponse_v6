@@ -2,7 +2,7 @@
 % c: poles in wq-format
 % k: scalar coefficient
 % n: number of poles
-% N: length of c-vector
+% N: max number of poles
 function c = butterIniC(k,n,N)
 if mod(n,2) == 0
 
