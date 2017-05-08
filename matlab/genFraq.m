@@ -3,6 +3,18 @@
 % c: input vector in w-q-format
 % n: filter order
 function [num, den] = genFraq(c,n)
+
+num = c(1);
+den = 1;
+if(mod(n,2) == 1)
+	den = conv([1,abs(c(n+1))],den);
+	n = n-1;
+end
+for r=2:2:n
+	num = num*c(r).^2;
+	den = conv([1,c(r)./c(r+1),c(r).^2],den);
+end
+%{
 den = 1;
 k = c(1); c = c(2:end);	%extracts leading coefficient
 if mod(n,2) == 1	%determines if there is a real pole
@@ -25,7 +37,7 @@ end
 num = prod(wp.^2).*k;		%numerator of tf
 if odd == 1
 	num = num*abs(s);	%*realPole
-	den = conv([1,-s],den);	%*(s - sigma)
+	den = conv([1,abs(s)],den);	%*(s - sigma)
 end
-
+%}
 end

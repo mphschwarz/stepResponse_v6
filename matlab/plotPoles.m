@@ -7,7 +7,7 @@ figure('Name','Poles');
 hold on;
 for n=pmin:pmax
 	[re,im,k] = wqtoReIm(c,n)
-	plot(re,imag(im),'x');
+	plot(re,im,'x');
 end
 if b == 1
 	plot(-cos(linspace(pi/2,-pi/2,200)),sin(linspace(pi/2,-pi/2,200)));
