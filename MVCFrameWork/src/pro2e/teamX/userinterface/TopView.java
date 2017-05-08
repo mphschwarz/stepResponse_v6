@@ -124,7 +124,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 		for (int i = 0; i < heiri.length; i++) {
 			hans[i] = i;
 		}
-		schrittantwortPlot.setData(hans, heiri);
+		schrittantwortPlot.setData(hans, heiri, hans);
 
 	}
 

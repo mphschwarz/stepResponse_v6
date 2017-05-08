@@ -1,0 +1,21 @@
+import java.awt.Panel;
+import java.util.Observable;
+import java.util.Observer;
+
+public class View extends Panel implements Observer {
+	private Controller controller;
+	private Model model;
+	
+	public View (Controller controller, Model model) {
+		this.controller = controller;
+		this.model = model;
+		
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
