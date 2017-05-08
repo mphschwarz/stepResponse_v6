@@ -7,8 +7,9 @@ den = 1;
 k = c(1); c = c(2:end);	%extracts leading coefficient
 if mod(n,2) == 1	%determines if there is a real pole
 	odd = 1;
+	s = c(n);
 	n = n-1;
-	s = c(end); c = c(1:end-1);	%extracts trailing real pole
+	c = c(1:n);	%extracts trailing real pole
 else
 	odd = 0;
 end
@@ -24,7 +25,7 @@ end
 num = prod(wp.^2).*k;		%numerator of tf
 if odd == 1
 	num = num*abs(s);	%*realPole
-	den = conv(den,[1,s]);	%*(s - sigma)
+	den = conv([1,-s],den);	%*(s - sigma)
 end
 
 end
