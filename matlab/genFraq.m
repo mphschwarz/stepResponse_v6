@@ -19,12 +19,12 @@ qp = c(2:2:end);		%extracts qp_n
 
 for r=1:length(wp)
 	t = [1, wp(r)./qp(r), wp(r).^2];	%(s^2 + wp/qp*s + wp^2)
-	den = conv(t,den);					%multiplies poles
+	den = conv(t,den);			%multiplies poles
 end
-num = prod(wp.^2).*k;			%numerator of tf
+num = prod(wp.^2).*k;		%numerator of tf
 if odd == 1
-	num = num*abs(s);			%*realPole
-	den = conv(den,[1,s]);		%*(s - sigma)
+	num = num*abs(s);	%*realPole
+	den = conv(den,[1,s]);	%*(s - sigma)
 end
 
 end
