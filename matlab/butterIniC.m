@@ -1,26 +1,25 @@
-%creates initial pole values for a butterworth filter
+%creates initial pole values from a butterworth filter
+% c: poles in wq-format
+% k: scalar coefficient
+% n: number of poles
+% N: length of c-vector
 function c = butterIniC(k,n,N)
 if mod(n,2) == 0
-	n = n/2;
-	re = cos(linspace(pi/2,pi,n + 1));
-	re = re(1:end-1);
-	im = sin(linspace(pi/2,pi,n + 1));
-	im = im(1:end-1);
-	w = sqrt(re.^2 + im.^2);
-	q = w./(2*abs(re));
-	c=[w; q];
-	c=c(:)';
-	c = [k,c,zeros(1,N-1-length(c))];
+
+	a = pi/2 + pi/2/n + pi/n*linspace(0,n-1,n);
+	re = cos(a); re = [re(1:n/2); re(1:n/2)];
+	re = re(:)';
+	im = sin(a); im = [im(1:n/2); -im(1:n/2)];
+	im = im(:)';
+
+	c = reImtowq(re,im,k,N);
 else
-	n = (n -1)/2;
-	re = cos(linspace(pi/2,pi,n + 1));
-	re = re(1:end-1);
-	im = sin(linspace(pi/2,pi,n + 1));
-	im = im(1:end-1);
-	w = sqrt(re.^2 + im.^2);
-	q = w./(2*abs(re));
-	c = [w; q];
-	c = c(:)';
-	c = [k,c,1,zeros(1,N-2-length(c))];
+	a = pi/2 + pi/2/n + pi/n*linspace(0,n-1,n);
+	re = cos(a); re = [re(1:(n-1)/2); re(1:(n-1)/2)];
+	re = [re(:)',-1];
+	im = sin(a); im = [im(1:(n-1)/2); -im(1:(n-1)/2)];
+	im = [im(:)',0];
+	
+	c = reImtowq(re,im,k,N);
 end
 end

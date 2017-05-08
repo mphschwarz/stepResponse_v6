@@ -1,4 +1,6 @@
 %converts poles form [w,q]-form to [real,imag]-form
+% c: poles in [w,q]-form
+% n: number of poles
 function [re,im,k] = wqtoReIm(c,n)
 k = c(1);
 if mod(n,2) == 0
