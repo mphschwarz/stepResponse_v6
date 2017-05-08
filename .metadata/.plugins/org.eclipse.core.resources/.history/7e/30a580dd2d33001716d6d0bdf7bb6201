@@ -1,0 +1,23 @@
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.data.xy.DefaultXYDataset;
+
+import JFreeChartDemo.Dataset;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		double [][] A = {{1, 2, 5}, {3, 4, 0}};
+		DefaultXYDataset dataset = Dataset.dataset(A);
+		
+		//Achsenbezeichnung
+		NumberAxis xax = new NumberAxis("x");
+		NumberAxis yax = new NumberAxis("y");
+		
+		
+		
+		
+	}
+	
+	
+	
+}
