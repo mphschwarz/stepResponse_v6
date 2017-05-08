@@ -6,7 +6,7 @@ zd = 0.004;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
-tstart = 280;		%step time index (set to -1 for auto detect)
+tstart = 0;		%step time index (set to -1 for auto detect)
 tend = 2000;		%trailing data cut off (set to -1 for auto detect)
 yin = y11;		%sample data
 tin = t11;		%sample time
@@ -57,6 +57,7 @@ end
 
 %calculates step response error
 function r = error(c,t,x,n)
-y = stepResponse(c,t,n);
-r = sum((y-x).^2);
+[dt, di] = shiftT(t,x,n,10);
+y = stepResponse(c,t(1+di:end),n);
+r = sum((y(1+di:end)-x(1+di:end)).^2);
 end
