@@ -6,7 +6,7 @@ zd = 0.004;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
-tstart = 0;		%step time index (set to -1 for auto detect)
+tstart = 280;		%step time index (set to -1 for auto detect)
 tend = 2000;		%trailing data cut off (set to -1 for auto detect)
 yin = y11;		%sample data
 tin = t11;		%sample time
@@ -37,7 +37,7 @@ parfor r=ns:ne	%multithreaded for loop, calculates all orders in paralell
 	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r,N),butterIniC(1,r,N),options);
 
 	%collects data on fminsearch run time
-	ef(r) = exitflag;	iter(r) = getfield(output, 'iterations')
+	ef(r) = exitflag;	iter(r) = getfield(output, 'iterations');
 	
 	y(r,:) = stepResponse(c(r,:),t,r);
 end
