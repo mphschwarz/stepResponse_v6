@@ -1,0 +1,13 @@
+import org.jfree.data.xy.DefaultXYDataset;
+
+//import org.jfree.data.xy.*;
+
+public class Dataset {
+	
+	public static DefaultXYDataset dataset(double[][] A){
+		DefaultXYDataset dataset = new DefaultXYDataset();
+		dataset.addSeries("xy", A);
+		return dataset;
+	}
+	
+}
