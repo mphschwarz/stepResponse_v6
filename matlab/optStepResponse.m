@@ -56,9 +56,9 @@ end
 
 %calculates step response error
 function r = error(c,t,x,n,N)
-[di, ~] = shiftT(t,x,c,n,N);
-y = stepResponse(c,t(di:end),n);
-r = sum(y.^2-x(di:end).^2);
-%y = stepResponse(c,t,n);
-%r = sum((y - x).^2);
+%[di, ~] = shiftT(t,x,c,n,N);
+%y = stepResponse(c,t(di:end),n);
+%r = sum(y.^2-x(di:end).^2);
+y = stepResponse(c,t,n);
+r = sum((y - x).^2);
 end
