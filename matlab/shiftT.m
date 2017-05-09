@@ -16,7 +16,7 @@ N = 10;
 
 tx = linspace(0, length(t)-1, length(t));	% time vector for standard butterworth
 [num,den] = genFraq(butterIniC(1,n,N),n);
-%[num,den] = genFraq(c,n);
+% [num,den] = genFraq(c,n);
 x = step(num,den,tx);	% generates standard butterworth step response
 
 
