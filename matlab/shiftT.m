@@ -42,7 +42,7 @@ tx5 = tx(ix5);
 txm = tx(ixm);
 tx0 = tx(ix0);
 %}
-while (y(iy5) < 0.5 && y(iy5+1) > 0.5) == false
+while (y(iy5) < 0.5 && y(iy5+1) > 0.5) == false	% finds halfway point of data
 	iy5 = iy5 + 1;
 end
 
