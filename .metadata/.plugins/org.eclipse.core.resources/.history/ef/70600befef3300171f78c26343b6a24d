@@ -1,0 +1,13 @@
+package pro2e.teamX.userinterface;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ComboBox implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+}

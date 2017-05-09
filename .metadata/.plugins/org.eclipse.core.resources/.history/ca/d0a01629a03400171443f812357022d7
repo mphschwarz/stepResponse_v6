@@ -1,0 +1,14 @@
+package pro2e.teamX.model;
+
+import pro2e.teamX.matlabfunctions.Matlab;
+
+public class ShiftT {
+
+	public double[] shiftT(double[] t, double[] y, double[] c, int n, int N) {		
+		
+		
+		
+		return di;
+	}	
+	
+}

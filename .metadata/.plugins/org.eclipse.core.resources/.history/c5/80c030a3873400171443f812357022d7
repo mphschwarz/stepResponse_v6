@@ -1,0 +1,10 @@
+package pro2e.teamX.model;
+
+public class ShiftT {
+
+	int t, y, c, n, N;
+	
+	tx = t.length
+	
+	
+}

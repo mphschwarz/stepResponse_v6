@@ -1,0 +1,25 @@
+package pro2e.teamX.userinterface;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+
+public class ComboBox implements ActionListener {
+	
+	private JComboBox<String> auswahl;
+	private String[] items = {"1. Ordnung", "2. Ordnung", "3. Ordnung", "4. Ordnung", "5. Ordnung", "6. Ordnung", "7. Ordnung", "8. Ordnung", "9. Ordnung", "10. Ordnung"};
+	
+	public ComboBox() {
+	
+	auswahl = new JComboBox<String>(items);
+	auswahl.addActionListener(this);
+	auswahl.setSelectedIndex(0);
+	
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		int i = auswahl.getSelectedIndex();
+		System.out.println("Index: "+ i);
+	}
+}

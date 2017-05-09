@@ -1,0 +1,12 @@
+package pro2e.teamX.model;
+
+import pro2e.teamX.matlabfunctions.Matlab;
+
+public class ShiftT {
+
+	int t, y, c, n, N;
+	
+	tx =t.length
+	
+	
+}
