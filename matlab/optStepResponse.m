@@ -1,15 +1,20 @@
 clear vars; format shortG; close all;
+%load signale_1;
 load signale_2;
+%load signale_3;
 
 sf = 25;		%smoothing coefficient
 zd = 0.004;		%noise amplitude for leading noise cut off
-pmin = 1;		%minimum number of calculated poles
+pmin = 10;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
-tstart = 280;		%step time index (set to -1 for auto detect)
+tstart = 1;		%step time index (set to -1 for auto detect)
 tend = 2000;		%trailing data cut off (set to -1 for auto detect)
-yin = y11;		%sample data
-tin = t11;		%sample time
+yin = y10;		%sample data
+tin = t10;		%sample time
+
+global di;
+di = ones(N,1);
 
 %smoothes the input data and cuts off leading DC signals
 [t,x,x0,tstart,tend] = parseData(yin,tin,zd,sf,tstart,tend);
@@ -17,8 +22,11 @@ tin = t11;		%sample time
 [t,T] = normT(x,t);
 [n,c,y,val,iter,ef] = optStep(t,x,pmin,pmax,N);
 
-plotStep(t,x,y(n,:),tin,yin,tstart,tend,val,pmin,pmax,iter);
+plotStep(t,x,y(n,:),tin,yin,di(n),tend,val,pmin,pmax,iter);
 plotPoles(c,n,n,1);
+
+figure('Name','sample shift');
+plot(di)
 
 %finds optimal number of poles
 %p: optimal number of poles
@@ -27,21 +35,26 @@ plotPoles(c,n,n,1);
 %val: error
 function [p,c,y,val,iter,ef] = optStep(t,x,ns,ne,N)
 options=optimset('TolX',1e-12,'MaxIter',5000,'MaxFunEvals',10000,'Display','final');
-
+global di;
 val = ones(N,1)*Inf;
 y = ones(N,length(x));
 iter = zeros(1,N);
 ef = zeros(1,N)*2;
+d = ones(N,1);
 
 parfor r=ns:ne	%multithreaded for loop, calculates all orders in paralell
 	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r,N),butterIniC(1,r,N),options);
-
+	
+	[td,~,~] = shiftT(t,x,c(r,:),r,N);
+	d(r) = td;
+	
 	%collects data on fminsearch run time
 	ef(r) = exitflag;	iter(r) = getfield(output, 'iterations');
 	
 	y(r,:) = stepResponse(c(r,:),t,r);
 end
 [~,p] = min(val);
+di = d;
 end
 
 %calculates step response from poles
@@ -56,9 +69,19 @@ end
 
 %calculates step response error
 function r = error(c,t,x,n,N)
-%[di, ~] = shiftT(t,x,c,n,N);
-%y = stepResponse(c,t(di:end),n);
-%r = sum(y.^2-x(di:end).^2);
+global di
+[d, ~, ~] = shiftT(t,x,c,n,N);
+%di(n) = d;
+if d < 0
+	d = 1;
+end
+y = stepResponse(c,t(1:end-d+1),n);
+%[d,n, length(t), length(x), length(y)]
+ly = length(y(1:end-d));
+lx = length(x(d:end));
+r = sum((y(1:end)-x(d:end)).^2);
+%{
 y = stepResponse(c,t,n);
 r = sum((y - x).^2);
+%}
 end

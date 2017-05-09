@@ -6,7 +6,7 @@
 % c: pole vector
 % n: butterworth filter order
 % N: maximum filter order
-function [di, dt] = shiftT(t,y,c,n,N)
+function [di, dt, tb] = shiftT(t,y,c,n,N)
 %{
 close all;
 t = t10;
@@ -17,10 +17,8 @@ N = 10;
 
 tx = linspace(0, length(t)-1, length(t));	% time vector for standard butterworth
 [num,den] = genFraq(butterIniC(1,n,N),n);
-% [num,den] = genFraq(c,n);
+%[num,den] = genFraq(c,n);
 x = step(num,den,tx);	% generates standard butterworth step response
-
-
 
 ix5 = 1;	% halfwaypoint butter
 ixm = 1;	% peak butter
@@ -48,7 +46,11 @@ end
 
 
 [~, iym] = findpeaks(y(iy5:end));
+if isempty(iym)
+	iym = length(y);
+else
 iym = iym(1) + iy5;			% finds first peak in data
+end
 ty = t/(t(iym) - t(iy5));		% normalizes ty
 
 ty5 = ty(iy5);
@@ -60,7 +62,7 @@ ty0 = ty(iy0);
 dt = ty5 - tx5;
 %di = int32(dt/(ty(1) - ty(2)))
 di = -int32(dt/(t(1) - t(2)));
-
+tb = tx;
 % plot(ty,y);
 %{
 hold on;

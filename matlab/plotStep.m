@@ -3,7 +3,7 @@ function plotStep(t,x,y,t0,x0,tstart,tend,val,pmin,pmax,iter)
 
 %plots processed input data and calculated step response
 figure('Name','step response');
-plot(t,x);
+plot(t(1:end-tstart+1),x(tstart:end));
 hold on;
 plot(t,y);
 legend('x(t) (input data)','y(t) (output data)');
@@ -15,8 +15,8 @@ hold off;
 figure('Name','all data')
 plot(t0,x0);
 hold on;
-plot(t0(tstart:tend),x);
-plot(t0(tstart:tend),y);
+plot(t0(tstart:tend),x(tstart:tend));
+plot(t,y);
 legend('x(t) (raw input)','x(t) (smoothed input)','y(t) (calculated output)');
 xlabel('time [t]');
 ylabel('signal');
