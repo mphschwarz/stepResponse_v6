@@ -1,8 +1,9 @@
 % number of samples to be shifted based on butterworth filter
-% i0: number of samples to shift
-% t0: time to shit
+% di: number of samples to shift
+% dt: time to shit
 % t: time vector
 % y: data vector
+% c: pole vector
 % n: butterworth filter order
 % N: maximum filter order
 function [di, dt] = shiftT(t,y,c,n,N)
