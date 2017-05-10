@@ -1,7 +1,7 @@
 clear vars; format shortG; close all;
-%load signale_1;
+load signale_1;
 load signale_2;
-%load signale_3;
+load signale_3;
 
 sf = 25;		%smoothing coefficient
 zd = 0.004;		%noise amplitude for leading noise cut off
@@ -9,24 +9,25 @@ pmin = 1;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
 tstart = 1;		%step time index (set to -1 for auto detect)
-tend = 2000;		%trailing data cut off (set to -1 for auto detect)
-yin = y11;		%sample data
-tin = t11;		%sample time
+tend = 1000;		%trailing data cut off (set to -1 for auto detect)
+yin = y15;		%sample data
+tin = t15;		%sample time
 
 global di;
 di = ones(N,1);
 
+
+tic	% starts run time measurement
 %smoothes the input data and cuts off leading DC signals
 [t,x,x0,tstart,tend] = parseData(yin,tin,zd,sf,tstart,tend);
 [t,T] = normT(x,t);
 
 [n,c,y,val,iter,ef] = optStep(t,x,pmin,pmax,N);
 
-plotStep(t,x,y(n,:),tin,yin,di(n),tend,val,pmin,pmax,iter);
+plotStep(t,x,y(n,:),tin,yin,di(n),tend,val,pmin,pmax,iter,di);
 plotPoles(c,n,n,1);
 
-figure('Name','sample shift');
-plot(di)
+toc	% displays run time
 
 %finds optimal number of poles
 %p: optimal number of poles
@@ -46,7 +47,11 @@ parfor r=ns:ne	%multithreaded for loop, calculates all orders in paralell
 	[c(r,:),val(r),exitflag,output] = fminsearch(@(c) error(c,t,x,r,N),butterIniC(1,r,N),options);
 	
 	[td,~,~] = shiftT(t,x,c(r,:),r,N);
-	d(r) = td;
+	if td < 0	% catches negtive shift values
+		d(r) = 1;	% sets shft value to 1 if otherwise negative
+	else
+		d(r) = td;	% sets shift value
+	end
 	
 	%collects data on fminsearch run time
 	ef(r) = exitflag;	iter(r) = getfield(output, 'iterations');
