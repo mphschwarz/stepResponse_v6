@@ -17,57 +17,40 @@ N = 10;
 
 tx = linspace(0, length(t)-1, length(t));	% time vector for standard butterworth
 [num,den] = genFraq(butterIniC(1,n,N),n);
-%[num,den] = genFraq(c,n);
-x = step(num,den,tx);	% generates standard butterworth step response
+x = step(num,den,tx);				% generates standard butterworth step response
+%[num,den] = genFraq(c,n);	% 
 
 ix5 = 1;	% halfwaypoint butter
 ixm = 1;	% peak butter
-ix0 = 1;	% start butter
 
 iy5 = 1;	% halfwaypoint data
 iym = 1;	% peak data
-iy0 = 1;	% start data
 
 while (x(ix5) < 0.5 && x(ix5+1) > 0.5) == false	% finds halfwaypoint of butter
 	ix5 = ix5 + 1;
 end
 
-[~, ixm] = max(x);	% finds peak of butter
+[~, ixm] = max(x);		% finds peak of butter
 tx = tx/(tx(ixm)-tx(ix5));	% normalizes tx
+tx5 = tx(ix5);			% time of halfway point in butter
 
-tx5 = tx(ix5);
-%{
-txm = tx(ixm);
-tx0 = tx(ix0);
-%}
 while (y(iy5) < 0.5 && y(iy5+1) > 0.5) == false	% finds halfway point of data
 	iy5 = iy5 + 1;
 end
 
 
-[~, iym] = findpeaks(y(iy5:end));
-if isempty(iym)
-	iym = length(y);
+[~, iym] = findpeaks(y(iy5:end));	% finds finds first peak after halfwaypoint in data
+if isempty(iym)			% determines if no peaks were found after halfwaypoint
+	iym = length(y);	% no peaks found, so last sample is used
 else
-iym = iym(1) + iy5;			% finds first peak in data
+	iym = iym(1) + iy5;	% peak was found and offset added
 end
-ty = t/(t(iym) - t(iy5));		% normalizes ty
+ty = t/(t(iym) - t(iy5));	% normalizes ty
 
-ty5 = ty(iy5);
-%{
-tym = ty(iym);
-ty0 = ty(iy0);
-%}
+ty5 = ty(iy5);	% time of halfwaypoint in data
 
 dt = ty5 - tx5;
 %di = int32(dt/(ty(1) - ty(2)))
 di = -int32(dt/(t(1) - t(2)));
 tb = tx;
-% plot(ty,y);
-%{
-hold on;
-plot(tx,x);
-plot(ty(1:di+end),y(1-di:end));
-hold off;
-%}
 end
