@@ -13,10 +13,10 @@ hold off;
 
 %plots raw input data, processed input data and step response
 figure('Name','all data')
-plot(t0,x0);
 hold on;
-plot(t0(tstart:tend),x(tstart:tend));
-plot(t,y);
+plot(t0,x0);	%plots raw data vector
+plot(t0(tstart:tstart+length(x(tstart:end))-1),x(tstart:end));	%plots parsed data vector
+plot(t0(tstart:tstart+length(y(1:end-tstart))-1),y(1:end-tstart));	%plots calculated data vector
 legend('x(t) (raw input)','x(t) (smoothed input)','y(t) (calculated output)');
 xlabel('time [t]');
 ylabel('signal');

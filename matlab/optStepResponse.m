@@ -5,7 +5,7 @@ load signale_2;
 
 sf = 25;		%smoothing coefficient
 zd = 0.004;		%noise amplitude for leading noise cut off
-pmin = 10;		%minimum number of calculated poles
+pmin = 1;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
 tstart = 1;		%step time index (set to -1 for auto detect)
