@@ -8,7 +8,7 @@ if mod(n,2) == 0
 	q = c(3:2:n+1);
 	
 	re = -w./(2*q);
-	im = w./(2*q).*sqrt(4*q.^2 + 1);
+	im = w./(2*q).*sqrt(4*q.^2 - 1);
 
 	re = [re;re]; re = re(:)';	%stripes real values
 	im = [im;-im]; im = im(:)';	%stripes imaginary values
@@ -17,7 +17,7 @@ else
 	q = c(3:2:n);
 	
 	re = -w./(2*q);
-	im = w./(2*q).*sqrt(4*q.^2 + 1);
+	im = w./(2*q).*sqrt(4*q.^2 - 1);
 
 	re = [re;re]; re = re(:)';	%stripes real values
 	im = [im;-im]; im = im(:)';	%stripes imaginary values
