@@ -15,7 +15,7 @@ if tstart <= 0	%finds approximate beginning of step if tstart is unspecified
 		tstart = tstart + 1;
 	end
 end
-ystart = mean(y(1:tstart));
+ystart = mean(y(1:tstart));	% mean value for leading noise
 
 if tend <= 0	%cuts off trailing noise if tend is unspecified
 	tend = length(y);
@@ -23,7 +23,7 @@ if tend <= 0	%cuts off trailing noise if tend is unspecified
 		tend = tend - 1;
 	end
 end
-yend = mean(y(tend:end));
+yend = mean(y(tend:end));	% mean value for tailing noise
 
 
 

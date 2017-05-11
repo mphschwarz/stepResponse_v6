@@ -5,11 +5,11 @@
 function plotPoles(c,pmin,pmax,b)
 figure('Name','Poles');
 hold on;
-for n=pmin:pmax
-	[re,im,k] = wqtoReIm(c,n)
+for n=pmin:pmax	% plots poles
+	[re,im,k] = wqtoReIm(c,n);
 	plot(re,im,'x');
 end
-if b == 1
+if b == 1	% plots semicircle for comparison with butterworth filter
 	plot(-cos(linspace(pi/2,-pi/2,200)),sin(linspace(pi/2,-pi/2,200)));
 end
 xlabel('Real');
