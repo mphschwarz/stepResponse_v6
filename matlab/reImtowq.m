@@ -1,4 +1,9 @@
 % converts poles from [real,imag]-form to [w,q]-form
+% re: vector containing real part of poles
+% im: vector containing imaginary part of poles
+% k: gain
+% N: max filter order
+% c: poles in [w,q]-form
 function c = reImtowq(re,im,k,N)
 if mod(length(re),2) == 0
 	w = sqrt(re(1:2:end).^2 + im(1:2:end).^2);	% w = sqrt(re^2+im^2)

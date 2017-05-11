@@ -6,7 +6,7 @@ function plotPoles(c,pmin,pmax,b)
 figure('Name','Poles');
 hold on;
 for n=pmin:pmax	% plots poles
-	[re,im,k] = wqtoReIm(c,n);
+	[re,im,k] = wqtoReIm(c(n,:),n);
 	plot(re,im,'x');
 end
 if b == 1	% plots semicircle for comparison with butterworth filter
