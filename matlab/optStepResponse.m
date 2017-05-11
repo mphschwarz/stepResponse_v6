@@ -58,7 +58,7 @@ parfor r=ns:ne	%multithreaded for loop, calculates all orders in paralell
 	
 	y(r,:) = stepResponse(c(r,:),t,r);
 end
-[~,p] = min(val);
+[~,p] = min(val);	% finds best filter order
 di = d;
 end
 
