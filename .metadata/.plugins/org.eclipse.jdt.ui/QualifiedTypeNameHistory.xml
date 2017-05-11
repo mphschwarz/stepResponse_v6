@@ -25,12 +25,12 @@
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.SVTools"/>
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen"/>
-<fullyQualifiedTypeName name="java.awt.HeadlessException"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXFormula"/>
 <fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXConstants"/>
 <fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXIcon"/>
 <fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
-<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.HeadlessException"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 </qualifiedTypeNameHistroy>
