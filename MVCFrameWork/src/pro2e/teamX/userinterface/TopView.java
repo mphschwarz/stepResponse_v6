@@ -38,7 +38,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	public FilterPanel filterPanel = new FilterPanel();
 	public SEbene sEbene=new SEbene();
 	
-	 Controller controller;
+	Controller controller;
 	
 	public UebertragungsfunktionsPanel uebertragungsfunktionsPanel = new UebertragungsfunktionsPanel();
 	private JProgressBar jPBar = new JProgressBar(0, 100);

@@ -23,4 +23,7 @@
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.SVTools"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen"/>
 </qualifiedTypeNameHistroy>
