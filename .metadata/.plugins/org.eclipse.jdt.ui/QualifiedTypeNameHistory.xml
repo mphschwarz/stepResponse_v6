@@ -11,5 +11,26 @@
 <fullyQualifiedTypeName name="org.jfree.chart.renderer.xy.XYSplineRenderer"/>
 <fullyQualifiedTypeName name="org.jfree.chart.plot.XYPlot"/>
 <fullyQualifiedTypeName name="org.jfree.chart.JFreeChart"/>
+<fullyQualifiedTypeName name="com.sun.javafx.scene.control.behavior.ComboBoxBaseBehavior"/>
+<fullyQualifiedTypeName name="javax.swing.ComboBoxModel"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.ComboBox"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.awt.Container"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
+<fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.SVTools"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXFormula"/>
+<fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXConstants"/>
+<fullyQualifiedTypeName name="org.scilab.forge.jlatexmath.TeXIcon"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="java.awt.HeadlessException"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
 </qualifiedTypeNameHistroy>

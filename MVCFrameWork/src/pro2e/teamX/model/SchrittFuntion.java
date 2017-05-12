@@ -1,6 +1,5 @@
 package pro2e.teamX.model;
 
-import javafx.fxml.LoadException;
 import pro2e.teamX.matlabfunctions.Matlab;
 import pro2e.teamX.matlabfunctions.SVTools;
 

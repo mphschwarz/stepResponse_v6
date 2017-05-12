@@ -24,8 +24,11 @@ public class FilterPanel extends JPanel implements ActionListener {
 	public JCheckBox cbRechteck = new JCheckBox("Rechteck");
 	public JCheckBox cbGauss = new JCheckBox("Gauss");
 	public Box.Filler bfiller;
+	public Controller controller;
 
-	public FilterPanel() {
+
+	public FilterPanel(Controller controller) {
+		this.controller=controller;
 		this.setLayout(new GridBagLayout());
 		this.setPreferredSize(new Dimension(400, 200));
 		add(keinfilter, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
@@ -65,6 +68,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 		cbRechteck.addActionListener(this);
 		cbGauss.setVisible(false);
 		cbRechteck.setVisible(false);
+		
 	}
 
 	@Override
@@ -81,6 +85,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 			lbgrenzfrequenz.setVisible(false);
 			tfGrenzfrequenz.setVisible(false);
 			Box.createHorizontalGlue().setVisible(false);
+			
 
 		}
 		if (e.getSource() == keinfilter) {

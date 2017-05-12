@@ -5,46 +5,36 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileReader;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.StringTokenizer;
 
-import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-import pro2e.teamX.MVCFramework;
 import pro2e.teamX.model.Model;
 
 public class TopView extends JPanel implements Observer, ActionListener {
 	private JButton btberechnen = new JButton("Berechnen");
-	private SchrittantwortPlot schrittantwortPlot = new SchrittantwortPlot();
+	private Controller controller;
+	private SchrittantwortPlot schrittantwortPlot;
 	private PNSEbene pnsEbene = new PNSEbene();
-	public EingabePanel eingabePanel = new EingabePanel();
-	public FilterPanel filterPanel = new FilterPanel();
-	public SEbene sEbene=new SEbene();
+	public EingabePanel eingabePanel; 
+	public FilterPanel filterPanel; 
+	public SSEbene ssEbene ;
+	public Plotschritt plotschritt ;
+
 	
-	 Controller controller;
-	
+
 	public UebertragungsfunktionsPanel uebertragungsfunktionsPanel = new UebertragungsfunktionsPanel();
 	private JProgressBar jPBar = new JProgressBar(0, 100);
 	private JTextArea jtpols = new JTextArea(5, 20);
-	
-	
 
 	private JMenuBar jMenuBar = new JMenuBar();
 	private JMenu fileMenu, editMenu;
@@ -68,6 +58,13 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	public TopView(Controller controller) {
 		super(new GridBagLayout());
 		this.controller = controller;
+		
+		eingabePanel = new EingabePanel(controller);
+ filterPanel = new FilterPanel(controller);
+ schrittantwortPlot = new SchrittantwortPlot();
+	ssEbene = new SSEbene();
+	 plotschritt = new Plotschritt();
+		
 		panel1.setPreferredSize(new Dimension(600, 400));
 		panel1.setBorder(MyBorderFactory.createMyBorder(" Schrittantwort "));
 		panel2.setPreferredSize(new Dimension(200, 200));
@@ -107,62 +104,77 @@ public class TopView extends JPanel implements Observer, ActionListener {
 				GridBagConstraints.BOTH, new Insets(10, 10, 10, 10), 0, 0));
 		panel2.add(pnsEbene, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(10, 10, 10, 10), 0, 0));
-		
+
 		panel5.add(jtpols, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(10, 10, 10, 10), 0, 0));
 		panel6.add(uebertragungsfunktionsPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(10, 10, 10, 10), 0, 0));
-	
+
 		eingabePanel.tfOrdnung.addActionListener(this);
 		eingabePanel.tfOrdnungbis.addActionListener(this);
 		eingabePanel.tfZeitNormierung.addActionListener(this);
 		eingabePanel.tfStartwerte.addActionListener(this);
 		eingabePanel.btberechen.addActionListener(this);
 		eingabePanel.btAbbruch.addActionListener(this);
-
+		eingabePanel.jcordnungVon.addActionListener(this);
+		eingabePanel.jcordnungBis.addActionListener(this);
 
 		for (int i = 0; i < heiri.length; i++) {
 			hans[i] = i;
 		}
-		schrittantwortPlot.setData(hans, heiri, hans);
+		//schrittantwortPlot.setData(hans, heiri);
 
 	}
 
-	public void update(Observable obs, Object obj) {}
+	//	public void update(Observable obs, Object obj) {
+	//		System.out.println("TEST!!!!!!!!!!!!!!!!");
+	//		Model model=(Model) obs;
+	//		schrittantwortPlot.update(obs, obj);
+	//		System.out.println("Update Topview");
+	//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if (e.getSource() == eingabePanel.btberechen) {
-try {
-	int zahl=Integer.parseInt(eingabePanel.tfOrdnung.getText());
-	
-	
-} catch (NumberFormatException e2) {
-	eingabePanel.tfOrdnung.setText("1....10");
-}
-			System.out.println("Test Button");
-			controller.setParameter();
-
+		if(e.getSource()==eingabePanel.btberechen){
+		controller.setParameter();	
 		}
-		
+		if(e.getSource()==eingabePanel.btAbbruch){
+			System.exit(0);
+		}
+
+		//		if (e.getSource() == eingabePanel.btberechen) {
+		//			try {
+		//				int zahl = Integer.parseInt(eingabePanel.tfOrdnung.getText());
+		//				controller.setParameter();
+		//
+		//			} catch (NumberFormatException e2) {
+		//				eingabePanel.tfOrdnung.setText("1....10");
+		//			}
+		//			System.out.println("Test Button");
+		//
+		//		}
 
 	}
 
-	private double[] stringToCoeff(String s) {
-		StringTokenizer tokenizer = new StringTokenizer(s, ", ");
-		double[] res = new double[tokenizer.countTokens()];
-		for (int i = 0; i < res.length; i++) {
-			res[i] = Double.parseDouble(tokenizer.nextToken());
-		}
+	//	private double[] stringToCoeff(String s) {
+	//		StringTokenizer tokenizer = new StringTokenizer(s, ", ");
+	//		double[] res = new double[tokenizer.countTokens()];
+	//		for (int i = 0; i < res.length; i++) {
+	//			res[i] = Double.parseDouble(tokenizer.nextToken());
+	//		}
+	//
+	//		return res;
+	//	}
 
-		return res;
+	@Override
+	public void update(Observable obs, Object obj) {
+
+		Model model = (Model) obs;
+		System.out.println("TEST!!!!!!!!!!!!!!!!");
+		schrittantwortPlot.update(obs, obj);
+		pnsEbene.update(obs, obj);
+		System.out.println("Update Topview");
+
 	}
-	
-
-	
-
-
-
 
 }

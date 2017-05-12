@@ -6,29 +6,22 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileReader;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 
-import pro2e.teamX.model.DataImport;
 import pro2e.teamX.model.Model;
 import pro2e.teamX.userinterface.Controller;
 import pro2e.teamX.userinterface.MenuBar;
-import pro2e.teamX.userinterface.StatusBar;
 import pro2e.teamX.userinterface.ToolBar;
 import pro2e.teamX.userinterface.TopView;
 
-public class MVCFramework extends JFrame implements ActionListener {
+public class MVCFramework extends JFrame  {
 
 	private enum Mode {
 		FIXED, PACKED, FIXEDRESIZABLE, PACKEDRESIZABLE // fixed(fixierte grösse) 
@@ -39,9 +32,11 @@ public class MVCFramework extends JFrame implements ActionListener {
 	private Model model = new Model();
 	private Controller controller = new Controller(model, this);
 	private TopView view = new TopView(controller);
-	private MenuBar menuBar = new MenuBar(controller, this);
+	private MenuBar menuBar = new MenuBar(model, controller, this);
 	private ToolBar toolBar = new ToolBar(controller);
-	private StatusBar statusBar = new StatusBar();
+//	private StatusBar statusBar = new StatusBar();
+//	private PNSEbene pnsEbene=new PNSEbene();
+//	private SchrittantwortPlot schrittantwortPlot=new SchrittantwortPlot();
 
 	private FileReader reader = null;
 	
@@ -53,19 +48,17 @@ public class MVCFramework extends JFrame implements ActionListener {
 	private static LAF laf = LAF.SYSTEM;
 
 	public void init() {
-		model.addObserver(view);  // werden die Observer regrestriert
-		model.addObserver(toolBar);
+		model.addObserver(view);  // werden die Observer regestriert
+//		model.addObserver(toolBar);
 		model.addObserver(menuBar);
+//		model.addObserver( pnsEbene);
+//		model.addObserver(schrittantwortPlot);
 	
 		getContentPane().setLayout(new BorderLayout());
 	//	getContentPane().add(toolBar, BorderLayout.PAGE_START);
 		getContentPane().add(view, BorderLayout.CENTER);
 	//	getContentPane().add(statusBar, BorderLayout.SOUTH);
 		setJMenuBar(menuBar);
-
-		
-		
-
 
 		pack();
 		
@@ -143,6 +136,7 @@ public class MVCFramework extends JFrame implements ActionListener {
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
+
 				MVCFramework frame = new MVCFramework();
 				if (laf != LAF.SYSTEM) {
 					frame.setUndecorated(true);
@@ -156,9 +150,6 @@ public class MVCFramework extends JFrame implements ActionListener {
 		});
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
 }

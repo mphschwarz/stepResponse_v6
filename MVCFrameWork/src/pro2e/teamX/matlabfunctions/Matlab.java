@@ -1,18 +1,25 @@
 package pro2e.teamX.matlabfunctions;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
+import org.apache.commons.math3.analysis.interpolation.SplineInterpolator;
 import org.apache.commons.math3.analysis.polynomials.PolynomialSplineFunction;
 import org.apache.commons.math3.analysis.solvers.LaguerreSolver;
 import org.apache.commons.math3.complex.Complex;
-import org.apache.commons.math3.transform.*;
-import org.apache.commons.math3.analysis.interpolation.*;
-
-;
+import org.apache.commons.math3.transform.DftNormalization;
+import org.apache.commons.math3.transform.FastFourierTransformer;
+import org.apache.commons.math3.transform.TransformType;
 
 public class Matlab {
 	static final FastFourierTransformer transformer = new FastFourierTransformer(DftNormalization.STANDARD);
 	static final SplineInterpolator interpolator = new SplineInterpolator();
+
+	public static double acosh(double x) {
+		return Math.log(x + Math.sqrt(x * x - 1.0));
+	}
 
 	public static String add(String s1, String s2) {
 		String[] a = s1.split("[, ]+");
@@ -44,6 +51,10 @@ public class Matlab {
 		return res;
 	}
 
+	public static double asinh(double x) {
+		return Math.log(x + Math.sqrt(x * x + 1.0));
+	}
+
 	/**
 	 * <pre>
 	 * Prüft ob exp und act, auf n signifikante Stellen, übereinstimmen.
@@ -65,6 +76,10 @@ public class Matlab {
 		String stExp = decimalFormat.format(exp);
 		String stAct = decimalFormat.format(act);
 		return stExp.equals(stAct);
+	}
+
+	public static double atanh(double x) {
+		return 0.5 * Math.log((x + 1.0) / (x - 1.0));
 	}
 
 	public static final double[] c2d(Complex[] c) {
@@ -89,6 +104,16 @@ public class Matlab {
 
 	public static final double[] colon(double[] a, int begin, int end) {
 		double[] res = new double[end - begin + 1];
+
+		for (int i = 0; i <= end - begin; i++) {
+			res[i] = a[begin + i];
+		}
+
+		return res;
+	}
+
+	public static final int[] colon(int[] a, int begin, int end) {
+		int[] res = new int[end - begin + 1];
 
 		for (int i = 0; i <= end - begin; i++) {
 			res[i] = a[begin + i];
@@ -262,6 +287,38 @@ public class Matlab {
 		return s;
 	}
 
+	public static double[][] csvread(String dateiName) {
+		double[][] data = null;
+		int nLines = 0;
+		int nColumns = 0;
+
+		try {
+			// Anzahl Zeilen und Anzahl Kolonnen festlegen:
+			BufferedReader eingabeDatei = new BufferedReader(new FileReader(dateiName));
+			String[] s = eingabeDatei.readLine().split("[, ]+");
+			nColumns = s.length;
+			while (eingabeDatei.readLine() != null) {
+				nLines++;
+			}
+			eingabeDatei.close();
+
+			// Gezählte Anzahl Zeilen und Kolonnen lesen:
+			eingabeDatei = new BufferedReader(new FileReader(dateiName));
+			data = new double[nLines][nColumns];
+			for (int i = 0; i < data.length; i++) {
+				s = eingabeDatei.readLine().split("[, ]+");
+				for (int k = 0; k < s.length; k++) {
+					data[i][k] = Double.parseDouble(s[k]);
+				}
+			}
+			eingabeDatei.close();
+		} catch (IOException exc) {
+			System.err.println("Dateifehler: " + exc.toString());
+		}
+
+		return data;
+	}
+
 	public static final Complex[] fft(Complex[] x) {
 		Complex[] X = transformer.transform(x, TransformType.FORWARD);
 		return X;
@@ -389,6 +446,36 @@ public class Matlab {
 		return res;
 	}
 
+	public static void print(String s, Complex[] x) {
+
+		System.out.println(s + " = [\t" + x[0].getReal() + " + " + x[0].getImaginary() + "i,");
+		for (int i = 1; i < x.length - 1; i++) {
+			System.out.println("\t" + x[i].getReal() + " + " + x[i].getImaginary() + "i,");
+		}
+		System.out.println("\t" + x[x.length - 1].getReal() + " + " + x[x.length - 1].getImaginary() + "i];");
+
+	}
+
+	public static void print(String s, double[] x) {
+
+		System.out.println(s + " = [\t" + x[0] + ",");
+		for (int i = 1; i < x.length - 1; i++) {
+			System.out.println("\t" + x[i] + ",");
+		}
+		System.out.println("\t" + x[x.length - 1] + "];");
+
+	}
+
+	public static double[] real(Complex[] c) {
+		double[] res = new double[c.length];
+
+		for (int i = 0; i < res.length; i++) {
+			res[i] = c[i].getReal();
+		}
+
+		return res;
+	}
+
 	public static final Object[] residue(double[] b, double[] a) {
 		double K = 0;
 		Polynom B = new Polynom(b);
@@ -417,23 +504,20 @@ public class Matlab {
 				}
 			}
 			Complex[] pa = poly(p);
-
 			Complex pvB = B.polyval(P[m]);
 			Complex pvA = polyval(pa, P[m]);
 			Complex pvD = pvB.divide(pvA);
 			R[m] = pvD.divide(A.p[0]);
-
-			// R[m] = B.polyval(P[m]).divide(polyval(pa, P[m])).divide(A.p[0]);
 		}
 
 		return new Object[] { R, P, K };
 	}
 
 	public static final Complex[] roots(double[] poly) {
-		final LaguerreSolver solver = new LaguerreSolver(1e-16);
+		final LaguerreSolver solver = new LaguerreSolver(1e-6);
 		double[] p = new double[poly.length];
 
-		// Koeffizient der höchsten Potenz auf durch Multiplikation mit einer
+		// Koeffizient der höchsten Potenz durch Multiplikation mit einer
 		// Konstanten auf 1 normieren:
 		double s = 1.0 / poly[0];
 		for (int i = 0; i < poly.length; i++) {
@@ -442,7 +526,7 @@ public class Matlab {
 
 		// Nullstellen bei Null zählen und entfernen
 		int n = 0;
-		while (p[p.length - 1 - n] <= 1e-15) {
+		while (p[p.length - 1 - n] <= 1e-16) {
 			n++;
 		}
 		double[] pnz = new double[p.length - n];
@@ -462,41 +546,47 @@ public class Matlab {
 		for (int i = 0; i < flip.length; i++)
 			flip[pnz.length - i - 1] = pnz[i];
 
-		// Wurzeln berechnen und durch Multiplikation mit s wieder entnormieren:
+		// Wurzeln berechnen:
 		Complex[] r = solver.solveAllComplex(flip, 0.0);
+
+		// Sortieren: Grösster Imag.-Teil kommt im RESULTAT zuerst.
+		r = sort(r);
+
+		// Imaginärteil von NS, die nich konjugiert komplex vorkommen, auf Null
+		// setzen.
+		boolean[] cc = new boolean[r.length];
+		for (int j = 0; j < r.length - 1; j++) {
+			for (int k = 0; k < r.length; k++) {
+				if (k != j) {
+					if (assertEq(r[j].getReal(), r[k].getReal(), 10)
+							&& assertEq(r[j].getImaginary(), -r[k].getImaginary(), 10)) {
+						r[j] = new Complex((r[j].getReal() + r[k].getReal()) / 2.0,
+								((r[j].getImaginary() - r[k].getImaginary())) / 2.0);
+						r[k] = new Complex(r[j].getReal(), -r[j].getImaginary());
+						cc[j] = cc[k] = true;
+					}
+				}
+			}
+		}
+
+		for (int j = 0; j < cc.length; j++) {
+			if (!cc[j]) r[j] = new Complex(r[j].getReal(), 0.0);
+		}
+
+		// Wurzeln durch Multiplikation mit s wieder entnormieren:
 		for (int i = 0; i < r.length; i++) {
 			r[i] = r[i].multiply(s);
 		}
 
 		Complex[] res = new Complex[r.length + n];
 
-		// Um mit Matlab konform zu sein flippen:
+		// Nullstellen einfügen und um mit Matlab konform zu sein flippen:
 		int i = 0;
-		for (; i < r.length; i++)
-			res[res.length - i - 1] = r[i];
-		// Nullstellen bei Null hinzufügen:
-		for (; i < res.length; i++) {
-			res[res.length - i - 1] = new Complex(0.0, 0.0);
+		for (; i < n; i++) {
+			res[i] = new Complex(0.0, 0.0);
 		}
-
-		// Imaginärteil von NS, die nich konjugiert komplex vorkommen, auf Null
-		// setzen.
-		boolean[] cc = new boolean[res.length];
-		for (int j = 0; j < res.length - 1; j++) {
-			if (assertEq(res[j].getReal(), res[j + 1].getReal(), 12)
-					&& assertEq(res[j].getImaginary(), -res[j + 1].getImaginary(), 12)) {
-				cc[j] = cc[j + 1] = true;
-			}
-		}
-		for (int j = 0; j < cc.length; j++) {
-			if (!cc[j])
-				res[j] = new Complex(res[j].getReal(), 0.0);
-			else {
-				res[j] = new Complex((res[j].getReal() + res[j + 1].getReal()) / 2.0,
-						(res[j].getImaginary() - res[j + 1].getImaginary()) / 2.0);
-				res[j + 1] = new Complex(res[j].getReal(), -res[j++].getImaginary());
-			}
-		}
+		for (; i < r.length + n; i++)
+			res[i] = r[r.length - i - 1 + n];
 
 		return res;
 	}
@@ -532,6 +622,22 @@ public class Matlab {
 		return new Object[] { h, t };
 	}
 
+	private static Complex[] sort(Complex[] a) {
+		boolean flag = true;
+		while (flag) {
+			flag = false;
+			for (int i = 0; i < a.length - 1; i++) {
+				if (Math.abs(a[i].getImaginary()) > Math.abs(a[i + 1].getImaginary())) {
+					Complex temp = a[i];
+					a[i] = a[i + 1];
+					a[i + 1] = temp;
+					flag = true;
+				}
+			}
+		}
+		return a;
+	}
+
 	public static double spline(double[] x, double[] y, double v) {
 		PolynomialSplineFunction f = interpolator.interpolate(x, y);
 		return f.value(v);
@@ -553,7 +659,10 @@ public class Matlab {
 	}
 
 	public static void main(String[] args) {
+		Filter filter = FilterFactory.createCheby1(11, 6, 1.0e18);
 
+		Complex[] rA = roots(concat(filter.A, new double[] { 0, 0 }));
+
+		print("rA", rA);
 	}
-
 }

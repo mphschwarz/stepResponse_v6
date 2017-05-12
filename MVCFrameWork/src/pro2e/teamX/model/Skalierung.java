@@ -1,11 +1,4 @@
 package pro2e.teamX.model;
-import java.util.ArrayList;
-
-import org.apache.commons.math3.analysis.differentiation.FiniteDifferencesDifferentiator;
-
-import com.sun.corba.se.spi.oa.OADefault;
-
-import sun.applet.Main;
 
 public class Skalierung extends Model {
 	public int xDelay;

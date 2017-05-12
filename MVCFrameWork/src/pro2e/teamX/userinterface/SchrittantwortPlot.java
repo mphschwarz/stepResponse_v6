@@ -1,10 +1,12 @@
 package pro2e.teamX.userinterface;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
@@ -14,22 +16,19 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.data.DomainOrder;
-import org.jfree.data.general.DatasetChangeListener;
-import org.jfree.data.general.DatasetGroup;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.data.statistics.*;
 
-public class SchrittantwortPlot extends JPanel {
-	private JFreeChart chart = ChartFactory.createXYLineChart("", "Zeit", "Antwort", null, PlotOrientation.VERTICAL,
-			false, false, false);;
+import pro2e.teamX.model.Model;
+
+public class SchrittantwortPlot extends JPanel implements Observer, MouseMotionListener {
+	private JFreeChart chart = ChartFactory.createXYLineChart("", "Zeit", "Antwort", null, PlotOrientation.VERTICAL, false,
+			false, false);;
 
 	public SchrittantwortPlot() {
 		this.setLayout(new FlowLayout());
 		this.setPreferredSize(new Dimension(800, 400));
-	//	this.setBorder(MyBorderFactory.createMyBorder(" Schrittantwort "));
+		//	this.setBorder(MyBorderFactory.createMyBorder(" Schrittantwort "));
 
 		// Farben und Settings
 		chart.setBackgroundPaint(getBackground());
@@ -52,35 +51,47 @@ public class SchrittantwortPlot extends JPanel {
 
 		ChartPanel panel = new ChartPanel(chart);
 		add(panel);
-		
-		//
-		
 
-		
 	}
-	
-
-	void setData(double[] x, double[] y, double [] t) {
-		XYSeries series1 = new XYSeries("Schrittantwort");
-		for (int i = 1; i < x.length; i++)
-			series1.add(t[i], x[i]);
-		
-		XYSeries series2 = new XYSeries("Schrittantwort");
-		for (int i = 1; i < y.length; i++)
-			series2.add(t[i], y[i]);
-			
-		XYPlot xyplot = chart.getXYPlot();
-		XYSeriesCollection dataset = new XYSeriesCollection();
-		dataset.addSeries(series1);
-		dataset.addSeries(series2);
-		xyplot.setDataset(dataset);
-	}
+	public void setData(double[] signal1, double[] signal2, double [] t) {
+        XYSeries series1 = new XYSeries("Schrittantwort");
+        for (int i = 1; i < signal1.length; i++)
+              series1.add(t[i], signal1[i]);
+        
+        XYSeries series2 = new XYSeries("Schrittantwort");
+        for (int i = 1; i < signal2.length; i++)
+              series2.add(t[i], signal2[i]);
+              
+        XYPlot xyplot = chart.getXYPlot();
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series1);
+        dataset.addSeries(series2);
+        xyplot.setDataset(dataset);
+ }
 
 
 	public void update(Observable obs, Object obj) {
-//		Model model = (Model) obs;
-
+		System.out.println("update.schrittantwort");
+		Model model = (Model) obs;
+		if(model.gerechnet==false){
+		setData(model.x0, model.y0,model.t0);}
+		if(model.gerechnet==true){
+			setData(model.x, model.yIst,model.ty);
+		}
+		//setData(model.t0, model.x0);
+	
 		repaint();
+	}
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		
+	
+		
 	}
 
 }

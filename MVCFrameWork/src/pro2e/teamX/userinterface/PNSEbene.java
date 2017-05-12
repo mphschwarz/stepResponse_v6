@@ -1,115 +1,200 @@
 package pro2e.teamX.userinterface;
 
-import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+import java.awt.FlowLayout;
 import java.util.Observable;
 
 import javax.swing.JPanel;
 
-import org.apache.commons.math3.complex.Complex;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.AxisLocation;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYDotRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.DomainOrder;
+import org.jfree.data.general.DatasetChangeListener;
+import org.jfree.data.general.DatasetGroup;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RectangleInsets;
+import org.jfree.ui.RefineryUtilities;
+
+import pro2e.teamX.matlabfunctions.Matlab;
+//import pro2e.teamX.matlabfunctions.plotpol;
+import pro2e.teamX.matlabfunctions.MatlabFunktionen;
+import pro2e.teamX.model.Model;
+
+import org.jfree.data.statistics.*;
 
 public class PNSEbene extends JPanel {
-	private Complex[] rA;
-	private double frequency = 0.0;
-	private double scale, scaleFactor = 1.0;;
+               
+               int pmin;
+               int pmax;
+               boolean b;
+               double[] c;
+               
+               public PNSEbene()
+               {
+                              super(new BorderLayout());
+                              setPreferredSize(new Dimension(420, 450));
+                              main(pmin, pmax, b, c);
+      //                      setData(beispiel());
+               }
+               
+               
+               public void main(int pmin, int pmax, boolean b, double [] c){
+                              this.pmin=pmin;
+                              this.pmax=pmax;
+                              this.b=b;
+                              this.c=c;
+                              XYSeriesCollection dataset = berechne(pmin,pmax,b,c);
+                              setData(dataset);             
+               }
+               
+//               public XYSeriesCollection beispiel()
+//               {
+//                              double[] a = {2 ,4 ,6 ,8 ,10 ,6 ,7};
+//        double[] b = {-1,2,-3,4,-5,6,-7};
+//        double[] p = new double[7];
+//        for( int i=0; i<p.length;i++)
+//               p[i]=0;
+//        XYSeriesCollection dataset = dataset(a, b, p, p);
+//        return dataset;
+//               }
+               
+               public XYSeriesCollection berechne(int pmin, int pmax, boolean b, double [] c) 
+               {
+                              double [] xwerte = new double [200];
+                              double [] ywerte = new double [200];
+                              double [] werte = new double [21];
+                              for (int n = pmin; n < pmax; n++) 
+                              {
+                                            
+                                            werte=MatlabFunktionen.wqtoReIm(c,n);
+                                            for (int i = 0; i < (werte.length-1)/2; i++) {
+                                                           xwerte[i]=werte[i];
+                                            }
+                                            int j=0;
+                                            for (int i = (werte.length-1)/2; i < werte.length-1; i++) {
+                                                           ywerte[j]=werte[i];
+                                                           j++;
+                                            }                     
+                              }
+                                                           
+                              if(b==true)
+                              {
+                                            double [] x= new double [200];
+                                            double [] y= new double [200];
+                                            double [] linspace = Matlab.linspace(Math.PI/2, -Math.PI/2, 200);
 
-	public PNSEbene() {
-		super(null);
-		setPreferredSize(new Dimension(300, 325));
-	//	setBorder(MyBorderFactory.createMyBorder(" " + getClass().getName() + " "));
-		
-		addMouseWheelListener(new MouseWheelListener() {
-			@Override
-			public void mouseWheelMoved(MouseWheelEvent e) {
-				if (e.getWheelRotation() < 0) {
-					scaleFactor *= 2.0;
-				} else {
-					scaleFactor /= 2.0;
-				}
-				if (scaleFactor < 1.0) scaleFactor = 1.0;
-				if (scaleFactor > 16.0) scaleFactor = 16.0;
-				repaint();
-			}
-		});
+                                            for (int i = 0; i < linspace.length; i++) {
+                                                           x[i]=-Math.cos(linspace[i]);
+                                                           y[i] =Math.sin(linspace[i]);
+                                            }
+                                            XYSeriesCollection dataset = dataset(xwerte, ywerte, x, y);
+                                            return dataset;
+                              }
+                              else{
+                                            double [] p= new double [200];
+                                            for(int i=0;i<p.length;i++)
+                                                           p[i]=0;
+                                            XYSeriesCollection dataset = dataset( xwerte,  ywerte,p,p);
+                                            return dataset;
+                              }
+               }
+               
+               
+               public void setData(XYSeriesCollection dataset ) {
+               JFreeChart chart = ChartFactory.createXYLineChart(
+                                            "", // chart title
+                                            "Real-Anteil", // x axis label
+                                            "", // y axis label
+                                            dataset, // data
+                                            PlotOrientation.VERTICAL,
+                                            true, // include legend
+                                            true, // tooltips
+                                            false // urls
+                                            );
+               final ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new Dimension(200, 200));
+                              chart.setBackgroundPaint(getBackground());
+
+                              XYPlot plot = (XYPlot) chart.getPlot();
+                              plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
+                              plot.setBackgroundPaint(getBackground());
+                              plot.setRangeGridlinePaint(Color.black);
+                              plot.setDomainGridlinePaint(Color.black);
+                              
+                              XYLineAndShapeRenderer renderer= (XYLineAndShapeRenderer) plot.getRenderer();
+                              renderer.setShapesVisible(true);
+                              renderer.setShapesFilled(true);
+                              renderer.setLinesVisible(false);
+                              
+                              XYDotRenderer dot = new XYDotRenderer();
+                              dot.setDotHeight(5);
+        dot.setDotWidth(5);
+
+        renderer.setBaseSeriesVisibleInLegend(false);
+        
+        ValueAxis yAxis = plot.getRangeAxis(0);//x-Achse
+                              yAxis.setAutoRange(true);
+                              yAxis.setTickLabelsVisible(false);
+                              yAxis.setAxisLineVisible(false);
+                              yAxis.setTickLabelsVisible(false);
+                              yAxis.setTickMarksVisible(false);
+                              
+        NumberAxis axis2 = new NumberAxis("Imaginär-Anteil");
+        axis2.setAutoRangeIncludesZero(false);
+        plot.mapDatasetToRangeAxis(1, 1);
+        plot.setRangeAxis(1, axis2);
+        plot.setRangeAxisLocation(1, AxisLocation.BOTTOM_OR_RIGHT);
+        plot.setDataset(1, dataset);
+        plot.setRenderer(1, renderer);
+        
+                              NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+                              rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        
+        ChartPanel panel = new ChartPanel(chart);
+                              add(panel);
+               
+               }
 
 
-		
-	}
+               public static XYSeriesCollection dataset(double[] x,double[] y,double[] xx,double[] yy){
+        XYSeries signal1 = new XYSeries("Pole");
+        for(int i=0;i<x.length;i++)
+        signal1.add(x[i], y[i]);
+        
+        XYSeries signal2 = new XYSeries("Butterworth");
+        for(int i=0;i<xx.length;i++)
+        signal2.add(xx[i], yy[i]);
 
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		int xOffset = getWidth() / 2;
-		int yOffset = getHeight() / 2;
-		Shape sClip = g.getClipBounds();
-		g.setClip(20, 20, getWidth() - 40, getHeight() - 40);
-		double minDim = Math.min(getWidth(), getHeight());
-		scale = scaleFactor * 0.45 * minDim / 12e3;
-		int v = (int) (scale * 12.5e3);
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(signal1);
+        dataset.addSeries(signal2);
+        return dataset;
+    }
 
-		g.setColor(Color.BLACK);
-		fillArrowRight(g, v / 2 + xOffset, yOffset);
-		g.drawLine(-v + xOffset, yOffset, v / 2 + xOffset, yOffset);
-		fillArrowUp(g, xOffset, -v + yOffset);
-		g.drawLine(xOffset, v + yOffset, xOffset, -v + yOffset);
 
-		g.drawRect(getWidth() - 50, 50, 20, 20);
-		g.drawString("s", getWidth() - 50 + 8, 50 + 13);
-
-//		if (rA != null) {
-//			g.setColor(Color.RED);
-//			for (int i = 0; i < rA.length; i++) {
-//				int x = (int) (scale * rA[i].re / (2.0 * Math.PI) + xOffset);
-//				int y = (int) (scale * rA[i].im / (2.0 * Math.PI) + yOffset);
-//				drawCross(g, x, y);
-//			}
-//		}
-
-		int x = xOffset;
-		int y1 = (int) (scale * frequency) + yOffset;
-		int y2 = (int) (-scale * frequency) + yOffset;
-
-		g.setColor(Color.red);
-		g.fillRect(x - 3, y1 - 3, 6, 6);
-		g.fillRect(x - 3, y2 - 3, 6, 6);
-		g.setClip(sClip);
-	}
-
-	private void fillArrowUp(Graphics g, int x, int y) {
-		int[] xp = { x, x + 5, x - 5 };
-		int[] yp = { y, y + 15, y + 15 };
-		g.fillPolygon(xp, yp, 3);
-	}
-
-	private void fillArrowRight(Graphics g, int x, int y) {
-		int[] yp = { y, y + 5, y - 5 };
-		int[] xp = { x, x - 15, x - 15 };
-		g.fillPolygon(xp, yp, 3);
-	}
-
-	private void drawCross(Graphics g, int x, int y) {
-		((Graphics2D) g).setStroke(new BasicStroke(1.0f));
-		g.drawLine(x - 5, y, x + 5, y);
-		g.drawLine(x, y + 5, x, y - 5);
-		g.drawLine(x - 3, y - 3, x + 3, y + 3);
-		g.drawLine(x - 3, y + 3, x + 3, y - 3);
-	}
-
-	public void update(Observable obs, Object obj) {
-//		Model model = (Model) obs;
-//		Filter filter = model.getFilter();
-	//	this.rA = filter.rA;
-	//	frequency = model.getTestFrequenz();
-		repaint();
-	}
+               public void update(Observable obs, Object obj) {
+                                         Model model = (Model) obs;
+                                         System.out.println("Test PNSEBENE");
+                                       double[] a = {2 ,4 ,6 ,8 ,10 ,6 ,7};
+                                       double[] b = {-1,2,-3,4,-5,6,-7};
+                                       double[] p = new double[7];
+                                       for( int i=0; i<p.length;i++){
+                                              p[i]=0;}
+ //                                      main(a, b, false, p);
+                              repaint();
+               }
 }
+
