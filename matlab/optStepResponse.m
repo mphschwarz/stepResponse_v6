@@ -10,8 +10,8 @@ pmax = 10;		%maximum number of calculated poles
 N = 10;			%maximum number of poles poles
 tstart = 1;		%step time index (set to -1 for auto detect)
 tend = 2500;		%trailing data cut off (set to -1 for auto detect)
-yin = y10;		%sample data
-tin = t10;		%sample time
+yin = y1;		%sample data
+tin = t1;		%sample time
 
 global di;
 di = ones(N,1);
