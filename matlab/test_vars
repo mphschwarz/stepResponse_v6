@@ -1,0 +1,27 @@
+sf = 25;		%smoothing coefficient
+pmin = 1;		%minimum number of calculated poles
+pmax = 10;		%maximum number of calculated poles
+N = 10;			%maximum number of poles poles
+tstart = 1;		%step time index (set to -1 for auto detect)
+tend = 2500;		%trailing data cut off (set to -1 for auto detect)
+'MaxIter' = 5000;
+'MaxfunEvals' = 10000;
+'TolX' = 1e-12;
+
+%----------------------------------------------------------------------------
+
+yin = y10;		%sample data
+tin = t10;		%sample time
+
+re = [-3.5949,	-3.5949,	-1.5746,	-1.5746,	-0.4263,	-0.4263,	-0.3631,	-0.3631,	-2.9473,	-2.9473];
+im = [3.8542,	-3.8542,	2.8368,	-2.8368,	2.9812,	-2.9812,	3.0065,	-3.0065,	3.4234,	-3.4234];
+k = 1.0163;
+
+%----------------------------------------------------------------------------
+
+yin = y11;
+tin = t11;
+
+re = [-3.5949	-3.5949	-1.5746	-1.5746	-0.42633	-0.42633    -0.36311    -0.36311    -2.9473 -2.9473];
+im = [3.8542	-3.8542	2.8368	-2.8368	2.9812	-2.9812	3.0065	-3.0065	3.4234	-3.4234];
+k = 1.0163;
