@@ -13,8 +13,8 @@ tend = 2500;		%trailing data cut off (set to -1 for auto detect)
 yin = y1;		%sample data
 tin = t1;		%sample time
 tend = 2500;		%trailing data cut	off (set to -1 for auto detect)
-yin = y14;		%sample data
-tin = t14;		%sample time
+yin = y15;		%sample data
+tin = t15;		%sample time
 
 %{
 yin = y10 + y11;
