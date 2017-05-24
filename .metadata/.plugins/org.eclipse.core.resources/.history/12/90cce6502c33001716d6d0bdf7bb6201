@@ -1,8 +1,0 @@
-import org.jfree.data.xy.*;
-
-public class Dataset {
-	double [][] A = {{1, 2, 5}, {3, 4, 0}};
-	
-	DefaultXYDataset dataset = new DefaultXYDataset;
-	
-}
