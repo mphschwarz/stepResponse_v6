@@ -58,16 +58,27 @@ public class Model extends Observable {
 	
 	// Runden --> KS Übertragungsfunktion
 	
-	public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
+//	public static double round(double value, int places) {
+//	    if (places < 0) throw new IllegalArgumentException();
+//
+//	    long factor = (long) Math.pow(10, places);
+//	    value = value * factor;
+//	    long tmp = Math.round(value);
+//	    return (double) tmp / factor;
+//	}
+	
+	public static String roundNumber(double x, int dp) {
 
-	    long factor = (long) Math.pow(10, places);
-	    value = value * factor;
-	    long tmp = Math.round(value);
-	    return (double) tmp / factor;
+		double log10 = Math.log10(x);
+		int count = (int) Math.floor(log10);
+		x = x / Math.pow(10.0, count);
+		x = Math.round(x * Math.pow(10.0, dp)) / Math.pow(10.0, dp);
+		if (count == 0)
+			return ""+x;
+		else
+			return ""+x + "E" + count;
 	}
 	
-
 	public void setParameter(int ordnungvon, int ordnungbis, int filter, int fensterbreite) {
 
 		this.startOrd = ordnungvon;
@@ -208,8 +219,11 @@ public class Model extends Observable {
 		
 		StringBuilder sbnum = new StringBuilder();
 		for(int i = 0; i < num.length; i++) {
-			sbnum.append(round(num[i],2)).append("");
+			
+			sbnum.append(roundNumber(num[i],2)).append("");
 		}
+		
+		
 		
 		System.out.println(sbnum.toString());
 		zähler = sbnum.toString();
@@ -222,9 +236,9 @@ public class Model extends Observable {
 		StringBuilder sbden = new StringBuilder();
 		for(int i = 0, k = den.length; i < den.length; i++) {
 			if (i < den.length-1) {
-				sbden.append(round(den[i],2)).append("s^" + k-- +" + ");
+				sbden.append(roundNumber(den[i],2)).append("s^" + k-- +" + ");
 				} else {
-					sbden.append(round(den[i],2)).append("s");
+					sbden.append(roundNumber(den[i],2)).append("s");
 			}
 		}
 		
