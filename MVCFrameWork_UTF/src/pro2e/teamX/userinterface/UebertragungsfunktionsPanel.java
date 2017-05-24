@@ -31,7 +31,7 @@ public void setUTF(String zähler, String nenner) {
 	System.out.println("setUTF");
 	String utf = "H(s) = \\frac {"+zähler+"} {"+nenner+"}";
 	TeXFormula formula = new TeXFormula(utf);
-	TeXIcon ti = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 23);		//Schriftgrösse
+	TeXIcon ti = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);		//Schriftgrösse
 	jtUTF.setIcon(ti);
 	}
 
