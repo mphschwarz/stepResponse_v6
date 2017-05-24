@@ -6,8 +6,8 @@ function [t0,y0,x0,tstart,tend] = parseData(y,t,ep,f,tstart,tend)
 x0 = y;
 y = movmean(y,f);		%smoothes the data
 
-ystart = mean(y(1:100));	%step starting val
-yend = mean(y(end-100:end));	%step ending val
+ystart = mean(y(1:length(y)/50));	%step starting val
+yend = mean(y(end-length(y)/50:end));	%step ending val
 
 if tstart <= 0	%finds approximate beginning of step if tstart is unspecified
 	tstart = 1;

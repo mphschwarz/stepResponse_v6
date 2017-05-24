@@ -3,7 +3,20 @@ load signale_1;
 load signale_2;
 load signale_3;
 
-sf = 25;		%smoothing coefficient
+load signal21.txt;
+load signal22.txt;
+load signal23.txt;
+
+t16 = signal21(:,1)';
+y16 = signal21(:,3);
+
+t17 = signal22(:,1)';
+y17 = signal22(:,3);
+
+t18 = signal23(:,1)';
+y18 = signal23(:,3);
+
+sf = 1;		%smoothing coefficient
 zd = 0.004;		%noise amplitude for leading noise cut off
 pmin = 1;		%minimum number of calculated poles
 pmax = 10;		%maximum number of calculated poles
@@ -13,8 +26,8 @@ tend = 2500;		%trailing data cut off (set to -1 for auto detect)
 yin = y1;		%sample data
 tin = t1;		%sample time
 tend = 2500;		%trailing data cut	off (set to -1 for auto detect)
-yin = y15;		%sample data
-tin = t15;		%sample time
+yin = y18;		%sample data
+tin = t18;		%sample time
 
 %{
 yin = y10 + y11;
