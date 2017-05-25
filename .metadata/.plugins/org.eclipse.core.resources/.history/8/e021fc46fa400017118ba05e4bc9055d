@@ -25,7 +25,6 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	private JButton btberechnen = new JButton("Berechnen");
 	private Controller controller;
 	public SchrittantwortPlot schrittantwortPlot;
-	public UebertragungsfunktionsPanel uebertragungsfunktionsPanel;
 	PNSEbene pnsEbene = new PNSEbene();
 	private MenuBar menuBar;
 	public EingabePanel eingabePanel;
@@ -35,6 +34,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	public StatusBar statusBar;
 	public PolListe polListe;
 
+	public UebertragungsfunktionsPanel uebertragungsfunktionsPanel = new UebertragungsfunktionsPanel();
 	private JProgressBar jPBar = new JProgressBar(0, 100);
 	private JTextArea jtpols = new JTextArea(5, 20);
 
@@ -65,7 +65,6 @@ public class TopView extends JPanel implements Observer, ActionListener {
 		eingabePanel = new EingabePanel(controller);
 		filterPanel = new FilterPanel();
 		schrittantwortPlot = new SchrittantwortPlot();
-		uebertragungsfunktionsPanel = new UebertragungsfunktionsPanel();
 		ssEbene = new SSEbene();
 		plotschritt = new Plotschritt();
 		statusBar = new StatusBar();
@@ -100,7 +99,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 				new Insets(10, 10, 10, 10), 0, 0));
 		add(panel5, new GridBagConstraints(3, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(10, 10, 10, 10), 0, 0));
-		add(panel6, new GridBagConstraints(0, 4, 4, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+		add(panel6, new GridBagConstraints(3, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(10, 10, 10, 10), 0, 0));
 
 		panel4.add(filterPanel, new GridBagConstraints(0, 0, 3, 3, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -115,7 +114,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 				new Insets(10, 10, 10, 10), 0, 0));
 		panel6.add(uebertragungsfunktionsPanel, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH, new Insets(10, 10, 10, 10), 0, 0));
-		panel7.add(statusBar, new GridBagConstraints(0, 5, 4, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+		panel7.add(statusBar, new GridBagConstraints(0, 4, 4, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 				new Insets(10, 10, 10, 10), 0, 0));
 
 		eingabePanel.tfOrdnung.addActionListener(this);
@@ -151,7 +150,6 @@ public class TopView extends JPanel implements Observer, ActionListener {
 		pnsEbene.update(obs, obj);
 		polListe.update(obs, obj);
 		System.out.println("Update Topview");
-		uebertragungsfunktionsPanel.update(obs, obj); 
 		repaint();
 
 	}

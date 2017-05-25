@@ -38,9 +38,6 @@ public class Model extends Observable {
 	public boolean poleBestOrd = false;
 	public double[] reButter = null;
 	public double[] imButter = null;
-	
-	public String zähler;
-	public String nenner;
 
 	public double[] xhammer;
 	public double[] thammer;
@@ -57,18 +54,6 @@ public class Model extends Observable {
 
 	public Model() {
 
-	}
-	
-	public static String roundNumber(double x, int dp) {
-
-		double log10 = Math.log10(x);
-		int count = (int) Math.floor(log10);
-		x = x / Math.pow(10.0, count);
-		x = Math.round(x * Math.pow(10.0, dp)) / Math.pow(10.0, dp);
-		if (count == 0)
-			return ""+x;
-		else
-			return ""+x + "E" + count;
 	}
 
 	public void setParameter(int ordnungvon, int ordnungbis, int filter, int fensterbreite) {
@@ -215,28 +200,6 @@ public class Model extends Observable {
 				yIst = (double[]) step_ist[0];
 
 				//-----------------------------
-				// Übertragungsfunktion
-				
-				StringBuilder sbnum = new StringBuilder();
-				for(int i = 0; i < num.length; i++) {
-					
-					sbnum.append(roundNumber(num[i],2)).append("");
-				}
-				
-				System.out.println(sbnum.toString());
-				zähler = sbnum.toString();
-				
-				StringBuilder sbden = new StringBuilder();
-				for(int i = 0, k = den.length; i < den.length; i++) {
-					if (i < den.length-1) {
-						sbden.append(roundNumber(den[i],2)).append("s^" + k-- +" + ");
-						} else {
-							sbden.append(roundNumber(den[i],2)).append("s");
-					}
-				}
-				
-				System.out.println(sbden.toString());
-				nenner = sbden.toString();			
 
 				//-----------------------------
 				//Nullstellen berechen der Besten Ordnung

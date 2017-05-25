@@ -1,27 +1,50 @@
 package pro2e.teamX.userinterface;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
-import java.awt.Insets;
+import java.util.Observable;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import pro2e.teamX.model.Model;
 
 public class UebertragungsfunktionsPanel extends JPanel {
-	
-	public JTextArea jtUTF=new JTextArea();
+	JLabel jtUTF = new JLabel();
 	
 public UebertragungsfunktionsPanel(){
-	this.setLayout(new GridLayout(1, 1));
-	this.setPreferredSize(new Dimension(350, 225));
-	jtUTF.setEditable(false);
-	jtUTF.setFont(getFont().deriveFont(32.0f));
-	jtUTF.setText("\n"+"\n"+"\n"+"\n"+"                                        1" + "\n" + "             H(s)=  ------------------------------" + "\n" + "                               3s^3+5s^2+s+3");
-	add(jtUTF, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-			new Insets(10, 10, 10, 10), 0, 0));
+
+	this.setLayout(new GridLayout());
+//	this.setPreferredSize(new Dimension(350, 225));
+	System.out.println("KonstruktorUTF");
+	add(jtUTF);
+	}
+
+
+public void setUTF(String zähler, String nenner) {
+	System.out.println("setUTF");
+	String utf = "H(s) = \\frac {"+zähler+"} {"+nenner+"}";
+	TeXFormula formula = new TeXFormula(utf);
+	TeXIcon ti = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);		// Schriftgrösse
+	jtUTF.setIcon(ti);
+	}
+
+
+public void update(Observable obs, Object obj) {
+	System.out.println("update Uebertragungsfunktion");
+	Model model = (Model) obs;
 	
-	
-	
-}
+	if(model.gerechnet==false) {
+//		String utf = " ";
+	}
+	if(model.gerechnet==true){
+		setUTF(model.zähler, model.nenner);
+
+		System.out.println("ifBerechnetUTF");
+	}
+	}
+
 }
