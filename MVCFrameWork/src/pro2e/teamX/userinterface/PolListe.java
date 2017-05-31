@@ -67,6 +67,7 @@ public class PolListe extends JPanel {
 	public PolListe() {
 		this.setLayout(new GridLayout(1, 1));
 		this.setPreferredSize(new Dimension(250, 300));
+		this.setBorder(MyBorderFactory.createMyBorder(" Polliste "));
 		//Test();
 	}
 

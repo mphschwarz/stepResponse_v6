@@ -19,6 +19,7 @@ import org.apache.commons.math3.util.FastMath;
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 import pro2e.teamX.model.PREFERENZEN;
+import pro2e.teamX.userinterface.FilterPanel;
 import pro2e.teamX.userinterface.StatusBar;
 
 public class MatlabFunktionen3 {
@@ -33,6 +34,10 @@ public class MatlabFunktionen3 {
 	public static final int RECHTECK = 0, GAUSS = 1;
 	private static int fensterform = RECHTECK;
 
+	public static final int KEINFILTER = 0, SMOOTHING = 1, TIEFPASS = 2;
+	private static int filtertyp = KEINFILTER;
+	
+
 	public static void setFenster(int fenstertyp) {
 		if (fenstertyp == RECHTECK) {
 			fensterform = RECHTECK;
@@ -41,7 +46,28 @@ public class MatlabFunktionen3 {
 			fensterform = GAUSS;
 		}
 	}
+	public static void setFiltertyp(int typ) {
+		if (typ == KEINFILTER) {
+			filtertyp = KEINFILTER;
+		}
+		if (typ == SMOOTHING) {
+			filtertyp = SMOOTHING;
+		}
+		if (typ == TIEFPASS) {
+			filtertyp = TIEFPASS;
+		}
+	}
 
+	public static void signalFiltern(double[] zeitvektor){
+		
+		int fensterbreite = Integer.parseInt(FilterPanel.tfAnzahlwerte.getText());// wert aus Textfeld
+		if(filtertyp == KEINFILTER){
+		}
+		if(filtertyp == SMOOTHING){
+		smoothing(zeitvektor,fensterbreite);
+		}	
+	}
+	
 	public static Object[] shiftT(double[] t, double[] y, double[] c, int n) {
 		double[] tx = Matlab.linspace(0, t.length - 1, t.length);
 		//	Object[] numden = genFraq(butterIniC(1, n, 10), n);

@@ -9,18 +9,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+
+import pro2e.teamX.matlabfunctions.Filter;
+import pro2e.teamX.matlabfunctions.FilterFactory;
+import pro2e.teamX.matlabfunctions.MatlabFunktionen;
+import pro2e.teamX.model.Model;
 
 public class FilterPanel extends JPanel implements ActionListener {
-	public JCheckBox keinfilter = new JCheckBox("Kein Filter");
-	public JCheckBox smoothingfilter = new JCheckBox("Smoothing");
-	public JCheckBox Tiefpassfilter = new JCheckBox("Tiefpassfilter");
-	
-	public JCheckBox cbRechteck = new JCheckBox("Rechteck");
-	public JCheckBox cbGauss = new JCheckBox("Gauss");
 	
 	public JRadioButton rbKeinfilter 		= new JRadioButton("Kein Filter");
 	public JRadioButton rbSmoothingfilter 	= new JRadioButton("Smoothing");
@@ -32,50 +32,60 @@ public class FilterPanel extends JPanel implements ActionListener {
 	public JLabel lbgrenzfrequenz = new JLabel("Grenzfrequenz:");
 	public JLabel lbAnzahlwerte = new JLabel("Anzahl Werte:");
 	
-	public JTextField tfGrenzfrequenz = new JTextField(30);
-	public JTextField tfAnzahlwerte = new JTextField(30);
+//	public JFormattedTextField tfGrenzfrequenz = new JFormattedTextField(30);
+	public static JIntegerTextField tfAnzahlwerte = new JIntegerTextField(30);
 	
 	public Box.Filler bfiller;
-
+	
+	public static final int RECHTECK = 0, GAUSS = 1;
+	public static final int KEINFILTER = 0, SMOOTHING = 1, TIEFPASS = 2;
+	
+	
 
 	public FilterPanel() {
 		this.setLayout(new GridBagLayout());
-		this.setPreferredSize(new Dimension(400, 200));
-		add(keinfilter, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(10, 10, 10, 10), 0, 0));
-		add(smoothingfilter, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(10, 10, 10, 10), 0, 0));
-		add(Tiefpassfilter, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(10, 10, 10, 10), 0, 0));
+		//this.setPreferredSize(new Dimension(400, 200));
+		this.setBorder(MyBorderFactory.createMyBorder(" Filter "));
 		
-		add(lbgrenzfrequenz, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(10, 10, 10, 10), 0, 0));
-		add(tfGrenzfrequenz, new GridBagConstraints(0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
-
-		add(cbRechteck, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(10, 10, 10, 10), 0, 0));
-		add(cbGauss, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-				new Insets(10, 10, 10, 10), 0, 0));
-
-		add(lbAnzahlwerte, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
-		add(tfAnzahlwerte, new GridBagConstraints(0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
+		add(rbKeinfilter, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(1, 1, 1, 1), 0, 0));
+		add(rbSmoothingfilter, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(1, 1, 1, 1), 0, 0));
+		//add(rbTiefpassfilter, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+		//		new Insets(1, 1, 1, 1), 0, 0));
 		
-		add(Box.createVerticalGlue(), new GridBagConstraints(0, 4, 3, 0, 1.0, 1.0, GridBagConstraints.CENTER,
-				GridBagConstraints.VERTICAL, new Insets(10, 10, 10, 10), 0, 0));
+		add(lbgrenzfrequenz, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(1, 1, 1, 1), 0, 0));
+//		add(tfGrenzfrequenz, new GridBagConstraints(1, 1, 2, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+//				GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+		add(lbAnzahlwerte, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+		add(tfAnzahlwerte, new GridBagConstraints(1, 1, 2, 1, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+		
+		add(rbRechteck, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(1, 1, 1, 1), 0, 0));
+		add(rbGauss, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(1, 1, 1, 1), 0, 0));
+
+		
+		add(Box.createVerticalGlue(), new GridBagConstraints(0, 3, 3, 0, 1.0, 1.0, GridBagConstraints.CENTER,
+				GridBagConstraints.VERTICAL, new Insets(1, 1, 1, 1), 0, 0));
 
 
-		keinfilter.addActionListener(this);
-		smoothingfilter.addActionListener(this);
-		Tiefpassfilter.addActionListener(this);
+		rbKeinfilter.addActionListener(this);
+		rbSmoothingfilter.addActionListener(this);
+		rbTiefpassfilter.addActionListener(this);
 		lbgrenzfrequenz.setVisible(false);
-		tfGrenzfrequenz.setVisible(false);
+//		tfGrenzfrequenz.setVisible(false);
 		lbAnzahlwerte.setVisible(false);
 		tfAnzahlwerte.setVisible(false);
 		rbGauss.addActionListener(this);
 		rbRechteck.addActionListener(this);
+		
+		rbRechteck.setSelected(true);
+		rbKeinfilter.setSelected(true);
+		
 		rbGauss.setVisible(false);
 		rbRechteck.setVisible(false);
 		
@@ -84,168 +94,53 @@ public class FilterPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == smoothingfilter) {
+		if (e.getSource() == rbSmoothingfilter) {
 
-			keinfilter.setSelected(false);
-			Tiefpassfilter.setSelected(false);
-			cbRechteck.setVisible(true);
-			cbGauss.setVisible(true);
+			rbKeinfilter.setSelected(false);
+			rbTiefpassfilter.setSelected(false);
+			rbRechteck.setVisible(true);
+			rbGauss.setVisible(true);
 			tfAnzahlwerte.setVisible(true);
 			lbAnzahlwerte.setVisible(true);
 			lbgrenzfrequenz.setVisible(false);
-			tfGrenzfrequenz.setVisible(false);
+//			tfGrenzfrequenz.setVisible(false);
 			Box.createHorizontalGlue().setVisible(false);
-			
-
+			MatlabFunktionen.setFiltertyp(SMOOTHING);
 		}
-		if (e.getSource() == keinfilter) {
-
-			keinfilter.setSelected(true);
-			Tiefpassfilter.setSelected(false);
-			cbRechteck.setVisible(false);
-			cbGauss.setVisible(false);
+		if (e.getSource() == rbKeinfilter) {
+			
+			rbKeinfilter.setSelected(true);
+			rbTiefpassfilter.setSelected(false);
+			rbRechteck.setVisible(false);
+			rbGauss.setVisible(false);
 			tfAnzahlwerte.setVisible(false);
 			lbAnzahlwerte.setVisible(false);
 			lbgrenzfrequenz.setVisible(false);
-			tfGrenzfrequenz.setVisible(false);
-			smoothingfilter.setSelected(false);
-
+//			tfGrenzfrequenz.setVisible(false);
+			rbSmoothingfilter.setSelected(false);
+			MatlabFunktionen.setFiltertyp(KEINFILTER);
 		}
-		if (e.getSource() == Tiefpassfilter) {
-
-			keinfilter.setSelected(false);
-			smoothingfilter.setSelected(false);
-			Tiefpassfilter.setSelected(true);
-			tfGrenzfrequenz.setVisible(true);
-
+		if (e.getSource() == rbTiefpassfilter) {
+			rbKeinfilter.setSelected(false);
+			rbSmoothingfilter.setSelected(false);
+			rbTiefpassfilter.setSelected(true);
+//			tfGrenzfrequenz.setVisible(true);
 			lbgrenzfrequenz.setVisible(true);
-			cbGauss.setVisible(false);
-			cbRechteck.setVisible(false);
+			rbGauss.setVisible(false);
+			rbRechteck.setVisible(false);
 			tfAnzahlwerte.setVisible(false);
 			lbAnzahlwerte.setVisible(false);
-
+			MatlabFunktionen.setFiltertyp(TIEFPASS);
+		}
+		if (e.getSource() == rbGauss) {
+			rbGauss.setSelected(true);
+			rbRechteck.setSelected(false);
+			MatlabFunktionen.setFenster(GAUSS); 	// 1 für GAUSS Globale Variabel geht nicht 
+		}
+		if (e.getSource() == rbRechteck) {
+			rbGauss.setSelected(false);
+			rbRechteck.setSelected(true);
+			MatlabFunktionen.setFenster(RECHTECK); 	// 0 für RECHTECK Globale Variabel geht nicht 
 		}
 	}
 }
-
-
-
-//package pro2e.teamX.userinterface;
-//
-//import java.awt.Dimension;
-//import java.awt.GridBagConstraints;
-//import java.awt.GridBagLayout;
-//import java.awt.Insets;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//import javax.swing.Box;
-//import javax.swing.JCheckBox;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.JTextField;
-//
-//public class FilterPanel extends JPanel implements ActionListener {
-//	public JCheckBox keinfilter = new JCheckBox("Kein Filter");
-//	public JCheckBox smoothingfilter = new JCheckBox("Smoothing");
-//	public JCheckBox Tiefpassfilter = new JCheckBox("Tiefpassfilter");
-//	public JLabel lbgrenzfrequenz = new JLabel("Grenzfrequenz:");
-//	public JTextField tfGrenzfrequenz = new JTextField(30);
-//	public JLabel lbAnzahlwerte = new JLabel("Anzahl Werte:");
-//	public JTextField tfAnzahlwerte = new JTextField(30);
-//	public JCheckBox cbRechteck = new JCheckBox("Rechteck");
-//	public JCheckBox cbGauss = new JCheckBox("Gauss");
-//	public Box.Filler bfiller;
-//	public Controller controller;
-//
-//
-//	public FilterPanel(Controller controller) {
-//		this.controller=controller;
-//		this.setLayout(new GridBagLayout());
-//		this.setPreferredSize(new Dimension(400, 200));
-//		add(keinfilter, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//		add(smoothingfilter, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//		add(Tiefpassfilter, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//		
-//		add(lbgrenzfrequenz, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//		add(tfGrenzfrequenz, new GridBagConstraints(0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-//				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
-//
-//		add(cbRechteck, new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//		add(cbGauss, new GridBagConstraints(1, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-//				new Insets(10, 10, 10, 10), 0, 0));
-//
-//		add(lbAnzahlwerte, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-//				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
-//		add(tfAnzahlwerte, new GridBagConstraints(0, 3, 3, 1, 1.0, 1.0, GridBagConstraints.CENTER,
-//				GridBagConstraints.HORIZONTAL, new Insets(10, 10, 10, 10), 0, 0));
-//		
-//		add(Box.createVerticalGlue(), new GridBagConstraints(0, 4, 3, 0, 1.0, 1.0, GridBagConstraints.CENTER,
-//				GridBagConstraints.VERTICAL, new Insets(10, 10, 10, 10), 0, 0));
-//
-//
-//		keinfilter.addActionListener(this);
-//		smoothingfilter.addActionListener(this);
-//		Tiefpassfilter.addActionListener(this);
-//		lbgrenzfrequenz.setVisible(false);
-//		tfGrenzfrequenz.setVisible(false);
-//		lbAnzahlwerte.setVisible(false);
-//		tfAnzahlwerte.setVisible(false);
-//		cbGauss.addActionListener(this);
-//		cbRechteck.addActionListener(this);
-//		cbGauss.setVisible(false);
-//		cbRechteck.setVisible(false);
-//		
-//	}
-//
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		if (e.getSource() == smoothingfilter) {
-//
-//			keinfilter.setSelected(false);
-//			Tiefpassfilter.setSelected(false);
-//			cbRechteck.setVisible(true);
-//			cbGauss.setVisible(true);
-//			tfAnzahlwerte.setVisible(true);
-//			lbAnzahlwerte.setVisible(true);
-//			lbgrenzfrequenz.setVisible(false);
-//			tfGrenzfrequenz.setVisible(false);
-//			Box.createHorizontalGlue().setVisible(false);
-//			
-//
-//		}
-//		if (e.getSource() == keinfilter) {
-//
-//			keinfilter.setSelected(true);
-//			Tiefpassfilter.setSelected(false);
-//			cbRechteck.setVisible(false);
-//			cbGauss.setVisible(false);
-//			tfAnzahlwerte.setVisible(false);
-//			lbAnzahlwerte.setVisible(false);
-//			lbgrenzfrequenz.setVisible(false);
-//			tfGrenzfrequenz.setVisible(false);
-//			smoothingfilter.setSelected(false);
-//
-//		}
-//		if (e.getSource() == Tiefpassfilter) {
-//
-//			keinfilter.setSelected(false);
-//			smoothingfilter.setSelected(false);
-//			Tiefpassfilter.setSelected(true);
-//			tfGrenzfrequenz.setVisible(true);
-//
-//			lbgrenzfrequenz.setVisible(true);
-//			cbGauss.setVisible(false);
-//			cbRechteck.setVisible(false);
-//			tfAnzahlwerte.setVisible(false);
-//			lbAnzahlwerte.setVisible(false);
-//
-//		}
-//	}
-//}

@@ -146,19 +146,19 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 			if (flag) {
 				flag = false;
 				//	view.pnsEbene.setVisible(false);
-				view.panel3.setVisible(false);
-				view.panel4.setVisible(false);
-				view.panel5.setVisible(false);
-				view.panel6.setVisible(false);
-				view.panel7.setVisible(false);
+//				view.panel3.setVisible(false);
+//				view.panel4.setVisible(false);
+//				view.panel5.setVisible(false);
+//				view.panel6.setVisible(false);
+//				view.panel7.setVisible(false);
 			} else {
 				flag = true;
 				//		view.pnsEbene.setVisible(true);
-				view.panel3.setVisible(true);
-				view.panel4.setVisible(true);
-				view.panel5.setVisible(true);
-				view.panel6.setVisible(true);
-				view.panel7.setVisible(true);
+//				view.panel3.setVisible(true);
+//				view.panel4.setVisible(true);
+//				view.panel5.setVisible(true);
+//				view.panel6.setVisible(true);
+//				view.panel7.setVisible(true);
 			}
 		}
 		if (e.getSource() == fminSearchEinstellungen) {

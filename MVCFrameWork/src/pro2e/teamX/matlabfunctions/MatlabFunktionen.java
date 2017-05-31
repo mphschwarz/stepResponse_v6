@@ -16,6 +16,8 @@ import org.apache.commons.math3.util.FastMath;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import pro2e.teamX.userinterface.FilterPanel;
+
 public abstract class MatlabFunktionen {
 	public NelderMeadSimplexSinusCosExample nelderMeadSimplexSinusCosExample;
 	public double[][] c0 = new double[10][10];
@@ -27,6 +29,11 @@ public abstract class MatlabFunktionen {
 	public static final int RECHTECK = 0, GAUSS = 1;
 	private static int fensterform = RECHTECK;
 
+	
+	public static final int KEINFILTER = 0, SMOOTHING = 1, TIEFPASS = 2;
+	private static int filtertyp = KEINFILTER;
+	
+
 	public static void setFenster(int fenstertyp) {
 		if (fenstertyp == RECHTECK) {
 			fensterform = RECHTECK;
@@ -35,6 +42,28 @@ public abstract class MatlabFunktionen {
 			fensterform = GAUSS;
 		}
 	}
+	public static void setFiltertyp(int typ) {
+		if (typ == KEINFILTER) {
+			filtertyp = KEINFILTER;
+		}
+		if (typ == SMOOTHING) {
+			filtertyp = SMOOTHING;
+		}
+		if (typ == TIEFPASS) {
+			filtertyp = TIEFPASS;
+		}
+	}
+
+	public static void signalFiltern(double[] zeitvektor){
+		
+		int fensterbreite = Integer.parseInt(FilterPanel.tfAnzahlwerte.getText());// wert aus Textfeld
+		if(filtertyp == KEINFILTER){
+		}
+		if(filtertyp == SMOOTHING){
+		smoothing(zeitvektor,fensterbreite);
+		}	
+	}
+	
 
 	public static double[] smoothing(double[] zeitvektor, int fensterbreite) {
 		double[] fenster = new double[fensterbreite];

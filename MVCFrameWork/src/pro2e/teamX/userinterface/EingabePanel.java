@@ -38,6 +38,7 @@ public class EingabePanel extends JPanel implements ActionListener  {
     	 this.controller=controller;
             this.setLayout(new GridBagLayout());
             this.setPreferredSize(new Dimension(400, 200));
+            this.setBorder(MyBorderFactory.createMyBorder(" Eingabe "));
 
             // JComboBox
             jcordnungVon = new JComboBox(jcordString);

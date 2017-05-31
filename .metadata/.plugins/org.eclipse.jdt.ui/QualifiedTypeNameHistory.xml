@@ -39,4 +39,7 @@
 <fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
 <fullyQualifiedTypeName name="pro2e.teamX.userinterface.MenuBar"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.FilterPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.JIntegerTextField"/>
 </qualifiedTypeNameHistroy>

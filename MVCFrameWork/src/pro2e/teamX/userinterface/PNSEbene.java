@@ -59,6 +59,7 @@ JFreeChart chart = ChartFactory.createXYLineChart(
 public PNSEbene()
   {
                  super(new BorderLayout());
+                 this.setBorder(MyBorderFactory.createMyBorder(" PNSEbene "));
       setPreferredSize(new Dimension(420, 450));
       ChartPanel chartPanel = new ChartPanel(chart);
                chartPanel.setPreferredSize(new Dimension(200, 200));

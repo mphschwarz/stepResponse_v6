@@ -18,6 +18,7 @@ public class UebertragungsfunktionsPanel extends JPanel {
 public UebertragungsfunktionsPanel(){
 
 	this.setLayout(new GridLayout());
+	this.setBorder(MyBorderFactory.createMyBorder(" Übertragungsfunktion "));
 //	this.setPreferredSize(new Dimension(350, 225));
 	System.out.println("KonstruktorUTF");
 	add(jtUTF);

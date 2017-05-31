@@ -23,6 +23,9 @@ import pro2e.teamX.userinterface.ToolBar;
 import pro2e.teamX.userinterface.TopView;
 
 public class MVCFramework extends JFrame  {
+		
+		public static final int appWidth  = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() * (2.0 / 3.0));
+		public static final int appHeight  = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() * (2.0 / 3.0));
 
 	private enum Mode {
 		FIXED, PACKED, FIXEDRESIZABLE, PACKEDRESIZABLE // fixed(fixierte grösse) 
