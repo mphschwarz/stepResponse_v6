@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.12.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.12-demo.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Kenneth Steiner/Downloads/jlatexmath-minimal-1.0.3/jlatexmath-minimal-1.0.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

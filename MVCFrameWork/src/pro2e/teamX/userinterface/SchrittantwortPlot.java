@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.Observable;
@@ -28,6 +29,7 @@ import pro2e.teamX.model.Model;
 public class SchrittantwortPlot extends JPanel implements Observer {
 	private JFreeChart chart = ChartFactory.createXYLineChart("", "Zeit", "Antwort", null, PlotOrientation.VERTICAL, false,
 			true, false);
+	private TextField fileName;
 	
 			
 	public SchrittantwortPlot() {
@@ -57,11 +59,14 @@ public class SchrittantwortPlot extends JPanel implements Observer {
 
 		
 		ChartPanel panel = new ChartPanel(chart);
+//		fileName = new TextField();
+//		fileName.setEditable(false);
 //		GridBagConstraints gbc_panel = new GridBagConstraints();
 //		gbc_panel.weightx=1.0;
 //		gbc_panel.weighty=1.0;
 //		gbc_panel.fill = GridBagConstraints.BOTH;
 		add(panel);//gbc_panel
+//		add(fileName);
 
 	}
 	public void setData(double[] signal1, double[] signal2, double [] t) {

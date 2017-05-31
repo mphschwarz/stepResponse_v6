@@ -1,0 +1,21 @@
+package JUnit;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import pro2e.teamX.matlabfunctions.*;
+
+public class Tests {
+	
+	MatlabFunktionen3 tester = new MatlabFunktionen3();
+	
+	double[] butt = new double[]{1, -1, 0};
+	
+	@Test
+	public void butterIniCTest() {
+		assertArrayEquals("ButtCheck", butt, tester.butterIniC(1, 1, 10), 0);	
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+package JUnit;
+
+import org.junit.Test;
+import pro2e.teamX.matlabfunctions.*;
+
+public class Tests {
+	
+	@Test
+	public void butterIniCTest() {
+		butterIniC tester = new butterIniC();
+		
+	}
+
+}

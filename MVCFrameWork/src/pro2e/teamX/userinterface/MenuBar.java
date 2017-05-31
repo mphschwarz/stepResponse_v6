@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import pro2e.teamX.model.Model;
@@ -36,6 +37,7 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	public double[] x1;
 	private boolean flag = true;
 	public EinstellungenFminSearch einstellungenFminSearch;
+	
 
 	public MenuBar(Model model, Controller controller, TopView view, JFrame frame) {
 		this.model = model;
@@ -45,7 +47,7 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 		menu = new JMenu("Datei");
 		menu.setMnemonic(KeyEvent.VK_D);
 		einstellungenFminSearch = new EinstellungenFminSearch(null, "Dialog");
-
+		
 		menu.addSeparator();
 		//		submenu = new JMenu("A submenu");
 		//		submenu.setMnemonic(KeyEvent.VK_S);

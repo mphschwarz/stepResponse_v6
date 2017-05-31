@@ -1,0 +1,23 @@
+package JUnit;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import pro2e.teamX.matlabfunctions.*;
+
+public class Tests {
+	
+	MatlabFunktionen3 tester = new MatlabFunktionen3();
+	
+	double[] but1 = new double[]{1, -1};
+	double[] but2 = new double[]{1, 1, 0.70711};
+	
+	@Test
+	public void butterIniCTest() {
+		assertArrayEquals("ButterCheck 1.Ordnung", but1, tester.butterIniC(1, 1, 10), 0);
+		assertArrayEquals("ButterCheck 2.Ordnung", but2, tester.butterIniC(1, 2, 10), 0);
+		
+	}
+
+}
