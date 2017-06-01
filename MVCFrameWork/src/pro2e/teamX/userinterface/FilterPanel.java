@@ -47,9 +47,9 @@ public class FilterPanel extends JPanel implements ActionListener {
 		//this.setPreferredSize(new Dimension(400, 200));
 		this.setBorder(MyBorderFactory.createMyBorder(" Filter "));
 		
-		add(rbKeinfilter, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+		add(rbKeinfilter, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 				new Insets(1, 1, 1, 1), 0, 0));
-		add(rbSmoothingfilter, new GridBagConstraints(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+		add(rbSmoothingfilter, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 				new Insets(1, 1, 1, 1), 0, 0));
 		//add(rbTiefpassfilter, new GridBagConstraints(2, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 		//		new Insets(1, 1, 1, 1), 0, 0));
@@ -63,9 +63,9 @@ public class FilterPanel extends JPanel implements ActionListener {
 		add(tfAnzahlwerte, new GridBagConstraints(1, 1, 2, 1, 1.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 		
-		add(rbRechteck, new GridBagConstraints(0, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+		add(rbRechteck, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 				new Insets(1, 1, 1, 1), 0, 0));
-		add(rbGauss, new GridBagConstraints(1, 2, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+		add(rbGauss, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
 				new Insets(1, 1, 1, 1), 0, 0));
 
 		

@@ -29,7 +29,7 @@ public void setUTF(String zähler, String nenner) {
 	System.out.println("setUTF");
 	String utf = "H(s) = \\frac {"+zähler+"} {"+nenner+"}";
 	TeXFormula formula = new TeXFormula(utf);
-	TeXIcon ti = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);		// Schriftgrösse
+	TeXIcon ti = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 25);		// Schriftgrösse
 	jtUTF.setIcon(ti);
 	}
 
@@ -38,14 +38,15 @@ public void update(Observable obs, Object obj) {
 	System.out.println("update Uebertragungsfunktion");
 	Model model = (Model) obs;
 	
-	if(model.gerechnet==false) {
-//		String utf = " ";
-	}
-	if(model.gerechnet==true){
-		setUTF(model.zähler, model.nenner);
-
-		System.out.println("ifBerechnetUTF");
-	}
+		if(model.gerechnet==false) {
+	//		String utf = " ";
+		}
+		if(model.gerechnet==true){
+			setUTF(model.zähler, model.nenner);
+	
+			System.out.println("ifBerechnetUTF");
+		}
+		
 	}
 
 }
