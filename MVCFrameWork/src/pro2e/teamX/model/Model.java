@@ -8,7 +8,7 @@ import jdk.nashorn.internal.codegen.OptimisticTypesPersistence;
 import pro2e.teamX.matlabfunctions.Filter;
 import pro2e.teamX.matlabfunctions.FilterFactory;
 import pro2e.teamX.matlabfunctions.Matlab;
-import pro2e.teamX.matlabfunctions.MatlabFunktionen;
+//import pro2e.teamX.matlabfunctions.MatlabFunktionen;
 import pro2e.teamX.matlabfunctions.MatlabFunktionen3;
 import pro2e.teamX.matlabfunctions.SVTools;
 import pro2e.teamX.userinterface.SchrittantwortPlot;

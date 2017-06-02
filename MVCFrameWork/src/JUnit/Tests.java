@@ -93,6 +93,30 @@ public class Tests {
 	
 	
 	@Test
+	public void reImtowqTest(){
+		
+		
+//		[c] = reImtowq([1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],1,10)
+//		c = 1.0000    1.4142   -0.7071    1.4142   -0.7071    1.4142   -0.7071    1.4142   -0.7071    1.4142   -0.7071
+		
+		double[] reim1 = new double[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+		double[] linspace = new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		double[] reimRef1 = new double[]{1, 1.4142, -0.7071, 1.4142, -0.7071, 1.4142, -0.7071, 1.4142, -0.7071, 1.4142, -0.7071};
+		
+		assertArrayEquals("reImtowqCheck 1", reimRef1 ,tester.reimtowq(reim1, reim1, 1, 10), abw);
+		
+		
+		
+		
+//		[c] = reImtowq(linspace(1,10,10),linspace(1,10,10),1,10)
+//		c = 1.0000    1.4142   -0.7071    4.2426   -0.7071    7.0711   -0.7071    9.8995   -0.7071   12.7279   -0.7071
+				
+		double[] reimRef2 = new double[]{1, 1.4142, -0.7071, 4.2426, -0.7071, 7.0711, -0.7071, 9.8995, -0.7071, 12.7279, -0.7071};
+		assertArrayEquals("reImtowqCheck 2", reimRef2 ,tester.reimtowq(Matlab.linspace(1, 10, 10), Matlab.linspace(1, 10, 10), 1, 10), abw);
+		
+	}
+	
+	@Test
 	public void genFraqTest(){
 		
 		Object[][] genFraqRef = new Object[10][];
@@ -133,12 +157,27 @@ public class Tests {
 		for (int i = 0; i < genFraqRef.length; i++) {
 			genFraqRef[i] = new Object[] {num[i], den[i]};
 		}
-		
+				
 		for (int i = 0; i < genFraq.length; i++) {
 			genFraq[i] = tester.genFraq(MatlabFunktionen3.butterIniC(1, i+1, 10), i+1);
 			assertArrayEquals("genFraqCheck "+ (i+1) +". num", (double[])genFraqRef[i][0], (double[])genFraq[i][0], abw);
 			assertArrayEquals("genFraqCheck "+ (i+1) +". den", (double[])genFraqRef[i][1], (double[])genFraq[i][1], abw);
 		}
+	}
+	
+	@Test
+	public void shiftTTest() {
+
+	}
+	
+	@Test
+	public void parseDateTest(){
+		
+	}
+	
+	@Test
+	public void normTTest(){
+		
 	}
 
 }

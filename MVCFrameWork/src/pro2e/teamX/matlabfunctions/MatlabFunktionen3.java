@@ -921,7 +921,8 @@ public class MatlabFunktionen3 {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
 			}
 			for (int i = 0; i < w.length; i++) {
-				q[i] = w[i] / (2 * Math.abs(real[i]));
+				q[i] = -w[i] / (2 * real[i]);	// Minus fehlte & Math.abs entfernt gemäss MatLab / 01.06.2017, KS
+//				q[i] = w[i] / (2 * Math.abs(real[i]));	
 			}
 			c[0] = k;
 			for (int i = 1; i <= w.length * 2; i++) {
@@ -951,7 +952,8 @@ public class MatlabFunktionen3 {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
 			}
 			for (int i = 0; i < w.length; i++) {
-				q[i] = w[i] / (2 * Math.abs(real[i]));
+				q[i] = -w[i] / (2 * real[i]);	// Minus fehlte & Math.abs entfernt gemäss MatLab / 01.06.2017, KS
+//				q[i] = w[i] / (2 * Math.abs(real[i]));
 			}
 			c[0] = k;
 			for (int i = 1; i <= w.length * 2; i++) {
