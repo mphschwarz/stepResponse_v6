@@ -154,7 +154,8 @@ public class MatlabFunktionen3 {
 	 * @return
 	 */
 	public static Object[] normTneu(double[] y, double[] t) {
-		int iy5 = 1;
+//		int iy5 = 1;
+		int iy5 = 0;	// Array fängt bei null an nicht wie bei Matlab bei 1. 20170604, KS
 
 		while (y[iy5] < 0.5 && y[(iy5 + 1)] > 0.5 == false) {
 			iy5 = iy5 + 1;
@@ -180,7 +181,7 @@ public class MatlabFunktionen3 {
 
 		} catch (Exception e) {
 			double T = 0.0;
-			return new Object[] { y, T };
+			return new Object[] { t, T };
 		}
 	}
 
@@ -643,7 +644,8 @@ public class MatlabFunktionen3 {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
 			}
 			for (int i = 0; i < w.length; i++) {
-				q[i] = w[i] / (2 * Math.abs(real[i]));
+				q[i] = -w[i] / (2 * real[i]);	// Minus fehlte & Math.abs entfernt gemäss MatLab / 01.06.2017, KS
+//				q[i] = w[i] / (2 * Math.abs(real[i]));
 			}
 			c[0] = k;
 			for (int i = 1; i <= w.length * 2; i++) {
@@ -673,7 +675,8 @@ public class MatlabFunktionen3 {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
 			}
 			for (int i = 0; i < w.length; i++) {
-				q[i] = w[i] / (2 * Math.abs(real[i]));
+				q[i] = -w[i] / (2 * real[i]);	// Minus fehlte & Math.abs entfernt gemäss MatLab / 01.06.2017, KS
+//				q[i] = w[i] / (2 * Math.abs(real[i]));
 			}
 			c[0] = k;
 			for (int i = 1; i <= w.length * 2; i++) {
@@ -699,7 +702,8 @@ public class MatlabFunktionen3 {
 		int[] p = new int[x0.length];
 		double[] x = new double[x0.length];
 		int k = 0;
-		for (int i = 1; i < x.length - 2; i++) {
+		for (int i = 1; i < x.length - 1; i++) {		// KS, 04.06.2017
+//		for (int i = 1; i < x.length - 2; i++) {	
 			if (x0[i + 1] == x0[i]) {
 				int m = 0;
 				for (int j = i; x0[j + 1] == x0[j] && j + 2 < x0.length; j++) {
