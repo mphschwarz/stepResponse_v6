@@ -97,49 +97,66 @@ public class MatlabFunktionen3 {
 		double[] den = (double[]) numden[1];
 		Object[] x = SVTools.step(num, den, tx);
 		double[] h = (double[]) x[0];
+		int ixm = 0;
+		int iym = 0;
+		double tx5 = 0;
 
 		int ix5 = 0;
 		int iy5 = 0;
 
-		while ((h[ix5] < 0.5 && h[ix5 + 1] >= 0.5) == false) {
-			ix5 = ix5 + 1;
-		}
-		Object[] gm = findpeaks(h);
 		try {
-			int[] ixmm = (int[]) gm[1];
-			int ixmmm = ixmm[0];
+			
+			while ((h[ix5] < 0.5 && h[ix5 + 1] >= 0.5) == false) {
+				ix5 = ix5 + 1;
+			}
+			
+			for (int i = 1; i < h.length; i++) {
+				double newmax = h[i];
+				if ((newmax > h[ixm])) {
+					ixm = i;
+				}
+				
+			}
+			
 			for (int i = 0; i < tx.length; i++) {
-				tx[i] = tx[i] / (tx[ixmmm] - tx[ix5]);
+				tx[i] = tx[i] / (tx[ixm] - tx[ix5]);
 			}
 
-			double tx5 = tx[ix5];
+			tx5 = tx[ix5];
 
 			while (y[iy5] < 0.5 && y[iy5 + 1] >= 0.5 == false) {
 				iy5 = iy5 + 1;
 			}
 
 			Object[] fp2 = findpeaks(Matlab.colon(y, iy5, y.length - 1));
-			int[] iymmg = (int[]) fp2[1];
-			int iymm = iymmg[0];
-			if (iymm == 0) {
-				iymm = y.length;
-			} else {
-				iymm = iymm + iy5;
-			}
+			int[] iyms = new int[fp2.length];
+				iym = y.length;
+				iyms = (int[]) fp2[1];
+				iym = iyms[0] + (++iy5);
+				
+				iy5--;
+				double[] ty = new double[y.length];
+				for (int i = 0; i < ty.length; i++) {
+					ty[i] = t[i] / (t[iym] - t[iy5]);
+				}
+				double ty5 = ty[iy5];
+				double dt = ty5 - tx5;
+				int di = (int)Math.round(-(dt / (t[0] - t[1])));
+
+				return new Object[] {di, dt};
+			
+		} catch (Exception e) {			
+			iym -= 1;
 			double[] ty = new double[y.length];
 			for (int i = 0; i < ty.length; i++) {
-				ty[i] = t[i] / (t[iymm] - t[iy5]);
+				ty[i] = t[i] / (t[iym] - t[iy5]);
 			}
-			double ty5 = ty[ix5];
+			double ty5 = ty[iy5];
 			double dt = ty5 - tx5;
-			double di = -(dt / (t[0] - t[1]));
+			int di = (int)Math.round(-(dt / (t[0] - t[1])));
 
-			return new Object[] { (int) (-di * PREFERENZEN.shiftT), dt };
-
-		} catch (Exception e) {
-			int di = 0;
-			int dt = 0;
-			return new Object[] { di, dt };
+			return new Object[] {di, dt};
+			
 		}
 
 	}
@@ -155,7 +172,7 @@ public class MatlabFunktionen3 {
 	 */
 	public static Object[] normTneu(double[] y, double[] t) {
 //		int iy5 = 1;
-		int iy5 = 0;	// Array fängt bei null an nicht wie bei Matlab bei 1. 20170604, KS
+		int iy5 = 0;	// Array fängt bei null an nicht wie bei Matlab bei 1. 04.06.2017, KS
 
 		while (y[iy5] < 0.5 && y[(iy5 + 1)] > 0.5 == false) {
 			iy5 = iy5 + 1;
@@ -169,14 +186,16 @@ public class MatlabFunktionen3 {
 			if (iymm == 0) {
 				iymm = y.length - 1;
 			} else {
-				iymm = (int) (iymm + iy5);
+//				iymm = (int) (iymm + iy5);
+				iymm = (int) (iymm + iy5+1);	// 04.06.2017, KS
 			}
 			PREFERENZEN.parseDataTempEnd = t[iymm];
 			PREFERENZEN.parseDataTempix5 = t[iy5];
 			for (int i = 0; i < ty.length; i++) {
 				ty[i] = t[i] / (t[iymm] - t[(int) iy5]);
 			}
-			double T = ty[iymm] - t[iy5];
+//			double T = ty[iymm] - t[iy5];
+			double T = ty[iymm] - ty[iy5];	// Falsches Array verwendet (t anstelle von ty). 04.06.2017, KS
 			return new Object[] { ty, T };
 
 		} catch (Exception e) {
@@ -637,8 +656,10 @@ public class MatlabFunktionen3 {
 				real[i] = re[i * 2];
 			}
 			imag[0] = im[1];
-			for (int i = 1; i < im.length / 2; i++) {
-				imag[i] = im[i * 2 + 1];
+//			for (int i = 1; i < im.length / 2; i++) {
+			for (int i = 0; i < im.length / 2; i++) {	// 05.06.2017, KS
+//				imag[i] = im[i * 2 + 1];	
+				imag[i] = im[i * 2 ];					// 05.06.2017, KS
 			}
 			for (int i = 0; i < real.length; i++) {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
@@ -667,9 +688,10 @@ public class MatlabFunktionen3 {
 			}
 
 			imag[0] = im[1];
-
-			for (int i = 1; i < im.length / 2; i++) {
-				imag[i] = im[i * 2 + 1];
+//			for (int i = 1; i < im.length / 2; i++) {
+			for (int i = 0; i < im.length / 2; i++) {		// 05.06.2017, KS
+//				imag[i] = im[i * 2 + 1];
+				imag[i] = im[i * 2];						// 05.06.2017, KS
 			}
 			for (int i = 0; i < real.length; i++) {
 				w[i] = Math.sqrt(Math.pow(real[i], 2) + Math.pow(imag[i], 2));
