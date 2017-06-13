@@ -84,8 +84,8 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	}
 
 	/**
-	 * Ruft bei betätigung des btBerechnen Buttons die Methode setParameter() des Controllers auf. Bei betätigung des Abbruch Buttons wird der PREFERENZEN.abbrechen boolean auf
-	 * auf true gesetzt um den Fminsearch zu unterbinden.
+	 * Ruft bei Betätigung des btBerechnen Buttons die Methode setParameter() des Controllers auf. Bei Betätigung des Abbruch Buttons wird der PREFERENZEN.abbrechen boolean auf
+	 * true gesetzt um den Fminsearch zu unterbinden.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class TopView extends JPanel implements Observer, ActionListener {
 	}
 
 	/**
-	 * Ruft update() der jeweiligen Panel auf.(schrittantwortPlot,pnsEbene, polListe,uebertragungsfunktionsPanel) auf.
+	 * Ruft update() der jeweiligen Panel auf.(schrittantwortPlot,pnsEbene, polListe,uebertragungsfunktionsPanel)
 	 */
 	@Override
 	public void update(Observable obs, Object obj) {

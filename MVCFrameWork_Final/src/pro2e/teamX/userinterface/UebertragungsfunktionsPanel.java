@@ -28,7 +28,7 @@ public UebertragungsfunktionsPanel(){
 	
 	}
 /**
- * Setzt die Übertragungsfunktion zusammen durch die zwei mitgelieferten Strings.
+ * Setzt die Übertragungsfunktion mithilfe der zwei mitgelieferten Strings zusammen.
  * @param zähler
  * @param nenner
  */

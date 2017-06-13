@@ -28,7 +28,7 @@ public class Controller {
 		this.topView = TopView;
 	}
 /**
- * setParameter setzt die Start und End Ordnung. Falls die Start Ordnung Grösser ist als die End Ordnung werden die beiden Einträge getauscht.
+ * setParameter setzt die Start und End Ordnung. Falls die Startordnung grösser ist als die Endordnung werden die beiden Einträge getauscht.
  * Ruft die entsprechende Methode des Models auf.
  */
 	public void setParameter() {
@@ -63,7 +63,7 @@ public class Controller {
 
 	}
 /**
- * Setzt die endordnung.
+ * Setzt die Endordnung.
  * @param ne
  */
 	public void setOrdnungBis(int ne) {

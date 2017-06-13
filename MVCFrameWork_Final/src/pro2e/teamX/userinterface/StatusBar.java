@@ -24,7 +24,7 @@ public class StatusBar extends JPanel implements ActionListener {
 	private static JCheckBoxMenuItem cbMenuItem = new JCheckBoxMenuItem("Append", true);;
 
 	/**
-	 * Die Statusbar wird benötigt um den Benutzer zu signalisieren was die Applikation momentan macht. 
+	 * Die Statusbar wird benötigt um dem Benutzer zu signalisieren was die Applikation momentan macht. 
 	 */
 	public StatusBar() {
 		setBorder(MyBorderFactory.createMyBorder(" StatusBar "));
@@ -86,7 +86,7 @@ public class StatusBar extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * Löcht den TExtfeld.
+	 * Löscht das Textfeld.
 	 */
 	public static void clear() {
 		textArea.setText("");

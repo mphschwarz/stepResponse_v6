@@ -34,8 +34,8 @@ public class EinstellungenFminSearch extends JDialog implements ActionListener {
 	public boolean abbrechen = false;
 	public boolean übernehmen = false;
 	/**
- * EinstellungenFminSearch wird verwendet um die Einstellungen des fminSearchs zu Optimieren. In dieser Methode werden die Textfelder,
- * Beschriftungen, Buttons hinzugefügt und mit dem ActionListener verbunden.
+ * EinstellungenFminSearch wird verwendet um die Einstellungen des fminSearchs zu optimieren. In dieser Methode werden die Textfelder,
+ * Beschriftungen und Buttons hinzugefügt und mit dem ActionListener verbunden.
  * @param frame
  * @param title
  */
@@ -96,7 +96,7 @@ public class EinstellungenFminSearch extends JDialog implements ActionListener {
 		pack();
 	}
 /**
- * Beim Aufruf des Actionperformed werden die Werte aus den Textfeldern gelesen und in den PREFERENZEN Attribute geschrieben.
+ * Beim Aufruf des Actionperformed werden die Werte aus den Textfeldern gelesen und in die PREFERENZEN Attribute geschrieben.
  */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btabbrechen) {

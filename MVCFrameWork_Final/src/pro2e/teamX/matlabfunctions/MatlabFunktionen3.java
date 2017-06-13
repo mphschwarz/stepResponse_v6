@@ -29,7 +29,7 @@ public class MatlabFunktionen3 {
 	private static int filtertyp = KEINFILTER;
 
 	/**
-	 * -Setzt den gewählten Fenstertyp (Filter)
+	 * Setzt den gewählten Fenstertyp (Filter)
 	 * @param fenstertyp
 	 */
 
@@ -43,7 +43,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * -Setzt mittels Zahl 0 "Kein Filter" und mit der Zahl 1 den "Smoothing Filter". 
+	 * Setzt mittels Zahl 0 "Kein Filter" und mit der Zahl 1 den "Smoothing Filter". 
 	 * @param typ
 	 */
 	public static void setFiltertyp(int typ) {
@@ -71,8 +71,8 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * -ShiftT ermöglicht die automatische Erkennung des Anfangs der Schrittantwort. Es wird dazu den Daten-vektor mit der Schrittantwort 
-	 *  eines Butterworthfilters verglichen. Die Schrittantwort des Butterworth-filters wird dazu gestreckt, und soweit nach rechts verschoben, 
+	 * ShiftT ermöglicht die automatische Erkennung des Anfangs der Schrittantwort. Es wird dazu den Daten-Vektor mit der Schrittantwort 
+	 *  eines Butterworthfilters verglichen. Die Schrittantwort des Butterworth-filters wird dazu gestreckt und soweit nach rechts verschoben, 
 	 *  dass die 50%-Punkte und Peak-Punkte zeitlich übereinstimmen. Die Anzahl Samples um die verschoben wurden wird dann zurückgegeben.
 	 * @param t
 	 * @param y
@@ -186,7 +186,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * -Die Smoothing Filter glättet das mit gesendete Zeitvektor mit der eingegebenen Fensterbreite.
+	 * Die Smoothing Filter glättet das mit gesendete Zeitvektor mit der eingegebenen Fensterbreite.
 	 * @param zeitvektor
 	 * @param fensterbreite
 	 * @return
@@ -240,7 +240,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * mean Rechnet den Mittelwert des doubleArrays v und gibt anschliessend ein double zurück.
+	 * mean rechnet den Mittelwert des doubleArrays v aus und gibt anschliessend ein double zurück.
 	 */
 	public static double mean(double[] v) {
 		double m = 0;
@@ -253,8 +253,8 @@ public class MatlabFunktionen3 {
 
 	/**
 	 * Die error Methode wird benötigt um den Fehler zwischen den Funktionen zu ermitteln. Dies wird mit den Koeffizienten c, den Normierten Zeitvektor t,
-	 *  - die gegebene Funktion x und die Ordnung. error übergibt diese Werte an der Methode stepResponse wo später ausführlicher erklärt wird.
-	 *    Anschliessend berechnet Error die Summe der Fehlerquadrate von Ist- und Soll-Vektoren.
+	 * die gegebene Funktion x und die Ordnung eruiert. error übergibt diese Werte an der Methode stepResponse wo später ausführlicher erklärt wird.
+	 * Anschliessend berechnet Error die Summe der Fehlerquadrate von Ist- und Soll-Vektoren.
 	 * @param c
 	 * @param t
 	 * @param x
@@ -272,10 +272,9 @@ public class MatlabFunktionen3 {
 
 	}
 
-	/**Die Methode butterIniC generiert sinnvolle Startwerte für die Übertragungsfunktion, wobei von einem Butterworthfilter ausgegangen wird.
-	ButterIniC generiert einen Vektor in Omega-Q-Form, der den Polen eines Butterworthfilters entspricht.
-	
-	 * 
+	/**
+	 * Die Methode butterIniC generiert sinnvolle Startwerte für die Übertragungsfunktion, wobei von einem Butterworthfilter ausgegangen wird.
+	 * ButterIniC generiert einen Vektor in Omega-Q-Form, der den Polen eines Butterworthfilters entspricht.
 	 * @param k
 	 * @param n
 	 * @param N
@@ -351,7 +350,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * stepResponse übergibt die Koeffizienten c und die Ordnung n an der Methode genFrag wo aus den Omega -Q Vektor und der Ordnung den Zähler und Nenner des 
+	 * stepResponse übergibt die Koeffizienten c und die Ordnung n an der Methode genFrag wo aus den Omega -Q Vektor und der Ordnung, den Zähler und Nenner des 
 	 * Polynoms zurück gibt. Anschliessend wird mittels der Methode Step von SVTOOLS die Schrittantwort berechnet und zurückgegeben.
 	 * @param c
 	 * @param t
@@ -369,7 +368,7 @@ public class MatlabFunktionen3 {
 
 	/**
 	 * genFrag wird benötigt um von der Omega -Q Form in Zähler und Nenner umzurechnen. 
-	 * genFrag übergibt anschliessend als Object Verpackt den Zähler und Nenner.
+	 * Anschliessend wird der Zähler und der Nenner als Object Verpackt übergeben.
 	 */
 	public static Object[] genFraq(double[] c, int n) {
 
@@ -396,8 +395,8 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * genFrag wird benötigt um von der Omega -Q Form in Zähler und Nenner umzurechnen und zu skalieren mit dem Normierungsfaktor. 
-	 * genFrag übergibt anschliessend als Object Verpackt den Zähler und Nenner.
+	 * genFrag wird benötigt um von der Omega -Q Form in Zähler und Nenner umzurechnen. 
+	 * Anschliessend wird der Zähler und der Nenner als Object Verpackt übergeben.
 	 * @param c
 	 * @param n
 	 * @return
@@ -427,9 +426,9 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * optStep erzeugt mittels Ordnung n einen butterIniC und bereitet den Schrittlängen Array für den NelderMeadVerfahren vor,
-	 * die mittels den eingegebenen Daten im Menu Einstellungenfminsearch gespeichert wurden. 
-	 * Anschliessend wird die unter methode fminSearch aufgerufen.
+	 * optStep erzeugt mittels Ordnung n einen butterIniC und bereitet den Schrittlängen Array für das NelderMead-Verfahren vor,
+	 * die mittels den eingegebenen Daten im Menu Einstellungen fminsearch gespeichert wurden. 
+	 * Anschliessend wird sie unter der Methode fminSearch aufgerufen.
 	 * @param normt
 	 * @param normy
 	 * @param n
@@ -451,10 +450,10 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * fminSearch erzeugt einen neuen SimplexOptimizer mit den Referenzen, die Im Menu(EinstellungenfminSearch) hinterleid sind. Zusätzlich wird ein Terget erzeugt 
-	 * und die normierten Daten normy,normt und die Ordnung mitgegeben. Anschliessend wird im Try Catch Block eine Unterfunktion vom Optimizer aufgerufen mit der Fehlerfunktion, den Startwerten,
-	 * die Schrittlänge und den Iterationenen Maximum. iM Catch werden die optimierten Koeffizienten der Fehlerfunktion gesichert. Dies aus dem Grund,dass nach dem 
-	 * überschreiten des Iterationsmaximums eine Exeption geworfen wird. so gehen die Optimierten Koeffizienten nicht verloren und die nächste Ordnung kann berechnend werden.
+	 * fminSearch erzeugt einen neuen SimplexOptimizer mit den Referenzen, die Im Menu(EinstellungenfminSearch) hinterlegt sind. Zusätzlich wird ein Target erzeugt 
+	 * und die normierten Daten normy, normt und die Ordnung mitgegeben. Anschliessend wird im Try Catch Block eine Unterfunktion vom Optimizer aufgerufen mit der Fehlerfunktion, den Startwerten,
+	 * die Schrittlänge und den Iterationenen Maximum. Im Catch werden die optimierten Koeffizienten der Fehlerfunktion gesichert. Dies aus dem Grund, dass nach dem 
+	 * überschreiten des Iterationsmaximums eine Exeption geworfen wird. So gehen die optimierten Koeffizienten nicht verloren und die nächste Ordnung kann berechnet werden.
 	 * fminSearch gibt die optimierten Koeffizeineten in Omega Q Form zurück, den Fehler und die Iterationen.
 	 * @param normt
 	 * @param normy
@@ -497,7 +496,7 @@ public class MatlabFunktionen3 {
 
 	/**
 	 * Target ist die Fehlerfunktion des SimplexOptimizers. Sie wird benötigt um die Koeffizienten zu optimieren.
-	 * Die wichtigste Komponente im Target ist das Value, die wird jedes mal vom Optimizer aufgerufen um die Koeffizienten zu Optimieren.
+	 * Die wichtigste Komponente im Target ist das Value, die wird jedes mal vom Optimizer aufgerufen um die Koeffizienten zu optimieren.
 	 * 
 	 * @author Zogg
 	 *
@@ -535,7 +534,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * normTzurück wird benötigt, um den normierten ZeitVektor zurück zu normieren auf die Ursprüngliche Grösse.
+	 * normTzurück wird benötigt, um den normierten ZeitVektor zurück zu normieren auf die ursprüngliche Grösse.
 	 * @param t
 	 * @return
 	 */
@@ -747,7 +746,7 @@ public class MatlabFunktionen3 {
 	}
 
 	/**
-	 * findpeaks sucht im Daten Array die Maximum stellen und gibt den jeweiligen Wert und Position im Array zurück. Wird von shiftT und NormT benötigt um den ZeitVektor zu
+	 * findpeaks sucht im Daten Array die maximalen Stellen und gibt die jeweiligen Werte und Positionen im Array zurück. Wird von shiftT und NormT benötigt um den ZeitVektor zu
 	 * normieren oder den Maximum des Schritts zu bestimmen.
 	 * @param x0
 	 * @return
@@ -782,8 +781,7 @@ public class MatlabFunktionen3 {
 
 	/**
 	 * Liest Daten- und Zeitvektor ein und schneidet unnötige Daten weg.
-	ParseData liest die Soll-Vektoren für Daten und Zeit ein. Es kann dabei vom Nutzer bestimmte Anfangs- und Endpunkte berücksichtigt werden.
-	
+	 * ParseData liest die Soll-Vektoren für Daten und Zeit ein. Es kann dabei vom Nutzer bestimmte Anfangs- und Endpunkte berücksichtigt werden.
 	 */
 	
 	public static Object[] parseData(double[] y, double[] t, double ep, int f, int tstart, int tend) {

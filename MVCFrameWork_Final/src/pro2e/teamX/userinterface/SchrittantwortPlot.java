@@ -23,8 +23,8 @@ public class SchrittantwortPlot extends JPanel implements Observer {
 			false, true, false);
 
 	/**
-	 * SchrittantwortPlot erzeugt einen neuen Chart und Legt die Achsen fest. SchrittantwortPlot wird verwendet um die Schrittantwort Grafisch auszugeben. 
-	 * Da wird ersichtlich ob die Funktion Approximiert oder nicht.		
+	 * SchrittantwortPlot erzeugt einen neuen Chart und legt die Achsen fest. SchrittantwortPlot wird verwendet um die Schrittantwort grafisch darzustellenn. 
+	 * Da wird ersichtlich ob die Funktion approximiert oder nicht.		
 	 */
 	public SchrittantwortPlot() {
 		this.setLayout(new GridLayout(1, 1));
@@ -52,13 +52,11 @@ public class SchrittantwortPlot extends JPanel implements Observer {
 		ChartPanel panel = new ChartPanel(chart);
 
 		add(panel);
-
-		/**
-		 * Setzt die erhaltenen Daten (step_soll,step_ist, zeit) in die jeweilige Serie und fügt die anschliessend am Chart hinzu.
-		 */
-
 	}
-
+	
+	/**
+	 * Setzt die erhaltenen Daten (step_soll,step_ist, zeit) in die jeweilige Serie und fügt die anschliessend am Chart hinzu.
+	 */
 	public void setData(double[] signal1, double[] signal2, double[] t) {
 		XYSeries series1 = new XYSeries("Gegebene Funktion");
 		for (int i = 1; i < signal1.length; i++)

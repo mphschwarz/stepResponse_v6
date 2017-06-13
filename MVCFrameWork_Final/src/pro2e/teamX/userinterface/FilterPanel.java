@@ -35,7 +35,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 	public static final int KEINFILTER = 0, SMOOTHING = 1, TIEFPASS = 2;
 
 	/**
-	 *  *  Das Panel wird gebaut und die einzelnen Komponenten darauf platziert.
+	 * Das Panel wird gebaut und die einzelnen Komponenten darauf platziert.
 	 * Alle Komponenten werden mit den ActionListener verbunden.
 	 */
 	public FilterPanel(Controller controller) {
@@ -92,7 +92,7 @@ public class FilterPanel extends JPanel implements ActionListener {
 
 	/**
 	 * Bei einem ActionEvent werden entweder die Checkboxen GAUSS ,RECHTECK und das Textfeld sichtbar und setzten den entsprechenen Fenstertyp in der Matlabfunktion setFenster().
-	 * Wenn Anwenden gedrückt wird wird die Methode filtern() mit der aus dem Textfeld ausgelesenen Wert aufgerufen.
+	 * Wenn Anwenden gedrückt wird, wird die Methode filtern() mit der aus dem Textfeld ausgelesenen Wert aufgerufen.
 	 */
 
 	@Override

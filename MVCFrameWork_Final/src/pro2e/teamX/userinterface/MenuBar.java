@@ -39,8 +39,8 @@ public class MenuBar extends JMenuBar implements Observer, ActionListener {
 	public EinstellungenFminSearch einstellungenFminSearch;
 
 	/**
-	 * Die Menübar hat mehrere Aufgaben. In der Menübar werden mittels jfChooser die Datei ausgewählt, die Inportiert werden soll. Das Dialogfenster für die Einstellungen des fminSearchs wird aufgerufen.
-	 * Züsätzlich werden die .csv Dateien mit der Methode csvread() in einen Array hinterleid.
+	 * Die Menübar hat mehrere Aufgaben. In der Menübar werden mittels jfChooser die Datei ausgewählt, die importiert werden soll. Das Dialogfenster für die Einstellungen des fminSearchs wird aufgerufen.
+	 * Züsätzlich werden die .csv Dateien mit der Methode csvread() in einem Array hinterlegt.
 	 * @param model
 	 * @param controller
 	 * @param view

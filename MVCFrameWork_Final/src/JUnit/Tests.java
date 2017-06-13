@@ -10,6 +10,10 @@ public class Tests {
 	
 	double abw = 0.001;	// Abweichung
 	
+	/**
+	 * Diese Testroutine überprüft die Methode butterIni mit 10 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */
 	@Test
 	public void butterIniCTest() {
 		double[][] butExp = new double[10][];
@@ -30,6 +34,10 @@ public class Tests {
 		}		
 	}
 	
+	/**
+	 * Diese Testroutine überprüft die Methode wqtoReIm mit 10 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void wqtoReImTest() {
 		double[][] wqtoReImExp = new double[10][];
@@ -90,6 +98,11 @@ public class Tests {
 		
 	}
 	
+	
+	/**
+	 * Diese Testroutine überprüft die Methode reImtowq mit 3 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void reImtowqTest(){
 		int anzTests = 3;
@@ -114,6 +127,11 @@ public class Tests {
 		
 	}
 	
+	
+	/**
+	 * Diese Testroutine überprüft die Methode genFraq mit 10 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void genFraqTest(){
 		
@@ -164,6 +182,10 @@ public class Tests {
 		
 	}
 	
+	/**
+	 * Diese Testroutine überprüft die Methode findpeaks mit 3 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void findpeaksTest(){
 		int anzTests = 3;
@@ -196,6 +218,10 @@ public class Tests {
 		
 	}
 	
+	/**
+	 * Diese Testroutine überprüft die Methode normT mit 2 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void normTTest(){
 		int anzTests = 2;
@@ -231,6 +257,10 @@ public class Tests {
 			
 	}
 	
+	/**
+	 * Diese Testroutine überprüft die Methode shiftT mit 3 Testvariablen auf ihre Funktionalität.
+	 * Dabei wurden die Testvariablen und die zu erwarteten Ausgabevariablen direkt aus MATLAB exportiert.
+	 */	
 	@Test
 	public void shiftTTest() {
 		int N = 10;

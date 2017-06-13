@@ -71,8 +71,7 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * -setParameter setzt die entsprechenden Parameter in die Attribute. Ruft die Methode berechneParseData auf.
-	 * Ruft zusätzlich notifyObservers auf.
+	 * setParameter setzt die entsprechenden Parameter in die Attribute. Ruft die Methode berechneParseData und zusätzlich den notifyObservers auf.
 	 * @param ordnungvon
 	 * @param ordnungbis
 	 * @param filter
@@ -93,7 +92,7 @@ public class Model extends Observable {
 	}
 
 	/**
-	 * Erzeugt mittels der Methode linspace einen Array der Länge 50,rechnet den Cosinus und Sinus Wert an der Stelle i des Arrays.
+	 * Erzeugt mittels der Methode linspace einen Array der Länge 50, rechnet den Cosinus und Sinus Wert an der Stelle i des Arrays aus.
 	 * Setzt die entsprechenden werde im Realanteil des Butterworthfilter ein resp. im Imaginäranteil des Butterworthfilters.
 	 */
 	public void setButterworth() {
@@ -142,10 +141,8 @@ public class Model extends Observable {
 
 	/**
 	 * berechnungOptStep erzeugt einen neuen Thread. Bereitet diverse Arrays vor und ruft mittels for Schleife die Methode OptStep() von Matlabfunktionen auf.
-	 * berechungOptStep ist das Herzstück der Software. Hier werden die Koeffizienten erzeugt und Weitergeleitet für die Optimierung. Anschliessend wird mittels kleinster Fehler die
-	 * beste Ordnung ermittelt und 
-	 * 
-	 * 
+	 * berechungOptStep ist das Herzstück der Software. Hier werden die Koeffizienten erzeugt und für die Optimierung weitergeleitet. Anschliessend wird mittels kleinstem Fehler die
+	 * beste Ordnung ermittelt und vorbereitet für die Zurückskallierung.
 	 */
 	private void berechnungOptStep() {
 		Thread thread = new Thread(new Runnable() {
@@ -349,7 +346,7 @@ notifyObservers();
 	}
 
 	/**
-	 * Benachrichtet alle Beobachter.
+	 * Benachrichtigt alle Beobachter.
 	 */
 	@Override
 	public void notifyObservers() {

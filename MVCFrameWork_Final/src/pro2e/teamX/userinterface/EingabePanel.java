@@ -32,9 +32,7 @@ public class EingabePanel extends JPanel implements ActionListener {
 			"7. Ordnung", "8. Ordnung", "9. Ordnung", "10. Ordnung" };
 
 	/**
-	 * EingabePanel
-	 * 
-	 *  Das Panel wird gebaut und die einzelnen Komponenten darauf platziert.
+	 * Das EingabePanel wird gebaut und die einzelnen Komponenten darauf platziert.
 	 * Alle Komponenten werden mit den ActionListener verbunden.
 	 * @param controller
 	 */
@@ -75,7 +73,7 @@ public class EingabePanel extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * actionPerformed wird aufgerufen sobald eine änderung an den CheckBoxes erfolgt. Ruft setOrdnungVon()
+	 * actionPerformed wird aufgerufen sobald eine Änderung an den CheckBoxes erfolgt. Ruft setOrdnungVon()
 	 * resp. setOrbnungBis() des Controllers mit den Übergabewerten auf.
 	 */
 	public void actionPerformed(ActionEvent e) {

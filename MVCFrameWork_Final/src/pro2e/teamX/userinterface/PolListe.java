@@ -26,8 +26,8 @@ public class PolListe extends JPanel {
 	}
 
 	/**
-	 * setData erhält die Polstellen in Real und Imaginäranteil der Besten Ordnung. Anschliessend werden die Werte gerundet auf 3 Nach Kommastellen und
-	 * Anschliessend die Methode schreibeData() aufgerufen um die Daten anzeigen zu können. 
+	 * setData erhält die Polstellen in Real und Imaginäranteil der besten Ordnung. Anschliessend werden die Werte gerundet auf 3 Nachkommastellen und
+	 * anschliessend die Methode schreibeData() aufgerufen um die Daten anzeigen zu können. 
 	 * @param reBestOrd
 	 * @param imBestOrd
 	 */

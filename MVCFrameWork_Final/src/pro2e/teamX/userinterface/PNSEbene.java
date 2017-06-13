@@ -87,7 +87,7 @@ public class PNSEbene extends JPanel implements Observer {
 	}
 
 	/**
-	 * setData bereitet die Arrays vor und fügt sie zusammen in einer Serie. Diese wird dann auf dem entsprechenden Panel angezeigt.
+	 * setData bereitet die Arrays vor und fügt sie in einer Serie zusammen. Diese wird dann auf dem entsprechenden Panel angezeigt.
 	 * @param reBestOrd
 	 * @param imBestOrd
 	 * @param reButter
@@ -119,7 +119,7 @@ public class PNSEbene extends JPanel implements Observer {
 	}
 
 	/**
-	 * Ruft die Methide setData der PNSEbene auf mit den Übergabewerte die es vom Model übernimmt.
+	 * Ruft die Methode setData der PNSEbene mit den Übergabewerten die es vom Model übernimmt, auf.
 	 */
 	public void update(Observable obs, Object obj) {
 		Model model = (Model) obs;
