@@ -22,7 +22,6 @@
 <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
-<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.SVTools"/>
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
@@ -34,4 +33,18 @@
 <fullyQualifiedTypeName name="java.awt.HeadlessException"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.awt.TextField"/>
+<fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.MenuBar"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.FilterPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JFormattedTextField"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.JIntegerTextField"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
+<fullyQualifiedTypeName name="pro2e.teamX.userinterface.JFormattedDoubleTextField"/>
+<fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen3"/>
+<fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
+<fullyQualifiedTypeName name="org.jfree.chart.renderer.category.GroupedStackedBarRenderer"/>
+<fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
+<fullyQualifiedTypeName name="java.awt.Insets"/>
 </qualifiedTypeNameHistroy>

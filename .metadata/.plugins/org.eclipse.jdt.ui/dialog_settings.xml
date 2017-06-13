@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="0" key="CallHierarchyViewPart.call_mode"/>
+	<item value="2" key="CallHierarchyViewPart.field_mode"/>
 	<item value="C:\Users\Kenneth Steiner\Downloads\jlatexmath-minimal-1.0.3" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="C:\Users\Kenneth Steiner\Downloads\jfreechart-1.0.19.zip" key="org.eclipse.jdt.ui.lastuserlibrary"/>
+	<item value="3" key="CallHierarchyViewPart.orientation"/>
+	<item value="500" key="CallHierarchyViewPart.ratio1"/>
+	<item value="1" key="SearchScopeActionGroup.search_scope_type"/>
 	<item value="560,544" key="UserLibraryLoadSaveDialog.size"/>
+	<item value="500" key="CallHierarchyViewPart.ratio3"/>
+	<list key="SearchScopeActionGroup.working_set">
+	</list>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
+	</section>
+	<section name="SearchInDialog">
+		<item value="true" key="SearchInProjects"/>
+		<item value="true" key="SearchInAppLibs"/>
+		<item value="true" key="SearchInJRE"/>
+		<item value="true" key="SearchInSources"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
@@ -16,13 +30,61 @@
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+	</section>
+	<section name="CallHierarchySearchScope">
+	</section>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="MVCFramework (6) - MVCFrameWork_Final" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\Kenneth Steiner\Documents\StepResponse.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Kenneth Steiner\Documents\StepResponse.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
+	<section name="javadoc">
+		<item value="public" key="access"/>
+		<item value="false" key="noindex"/>
+		<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_Final\javadoc.xml" key="antpath"/>
+		<item value="false" key="nodeprecatedlist"/>
+		<item value="true" key="use"/>
+		<item value="true" key="author"/>
+		<item value="false" key="nodeprecated"/>
+		<item value="false" key="nonavbar"/>
+		<item value="" key="docletpath"/>
+		<item value="C:\Program Files\Java\jdk1.8.0_131\bin\javadoc.exe" key="javadoc_command_history"/>
+		<item value="1.8" key="source"/>
+		<item value="true" key="version"/>
+		<item value="" key="docletname"/>
+		<item value="true" key="splitindex"/>
+		<item value="true" key="fromStandard"/>
+		<item value="false" key="notree"/>
+		<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_Final\doc" key="destdir"/>
+		<item value="false" key="openinbrowser"/>
+		<section name="projects">
+			<section name="MVCFrameWork_Final">
+				<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_Final\javadoc.xml" key="antpath"/>
+				<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_Final\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="MVCFrameWork_JUnit">
+				<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_JUnit\javadoc.xml" key="antpath"/>
+				<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6\MVCFrameWork_JUnit\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+		</section>
+	</section>
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="ClasspathContainerSelectionPage">
-		<item value="0" key="index"/>
-	</section>
-	<section name="OptionalMessageDialog.hide.">
-		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
+		<item value="1" key="index"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -32,7 +94,16 @@
 	<section name="NewPackageWizardPage">
 		<item value="false" key="create_package_info_java"/>
 	</section>
+	<section name="JavadocWizardDialog">
+		<item value="713" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-24|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="558" key="DIALOG_HEIGHT"/>
+		<item value="400" key="DIALOG_X_ORIGIN"/>
+		<item value="114" key="DIALOG_Y_ORIGIN"/>
+	</section>
 	<section name="completion_proposal_size">
+		<item value="432" key="size.y"/>
+		<item value="593" key="size.x"/>
 	</section>
 	<section name="JavaElementSearchActions">
 	</section>
