@@ -1,0 +1,9 @@
+Die Optimierung nimmt drei Inputs: die Ordnung der Transferfunktion, die Startwerte und das Soll-Signal.
+Sie liefert als Output die Pole der berechneten Transferfunktion, deren Schrittantwort und die Totzeit.
+
+Daten werden als Ovale dargestellt, Funktionen als Pfeile und IO als Rechtecke.
+
+Step berechnet die Schrittantwort aus einem Vektor von Polstellen.
+Shift berechnet die Totzeit des Soll-Signals
+Error berechnet die Summe der Fehlerquadrate von Ist- und Soll-Signalen.
+fminsearch berechnet solange bessere Polstellen, bis Error klein genug wird.
