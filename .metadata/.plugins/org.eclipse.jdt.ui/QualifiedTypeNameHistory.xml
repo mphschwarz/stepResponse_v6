@@ -43,4 +43,8 @@
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.Matlab"/>
 <fullyQualifiedTypeName name="pro2e.teamX.userinterface.JFormattedDoubleTextField"/>
 <fullyQualifiedTypeName name="pro2e.teamX.matlabfunctions.MatlabFunktionen3"/>
+<fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
+<fullyQualifiedTypeName name="org.jfree.chart.renderer.category.GroupedStackedBarRenderer"/>
+<fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
+<fullyQualifiedTypeName name="java.awt.Insets"/>
 </qualifiedTypeNameHistroy>

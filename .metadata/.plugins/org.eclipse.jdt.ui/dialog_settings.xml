@@ -35,6 +35,20 @@
 	</section>
 	<section name="CallHierarchySearchScope">
 	</section>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="MVCFramework (5) - MVCFrameWork_20170611" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\Kenneth Steiner\Documents\StepResponse.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Kenneth Steiner\Documents\StepResponse.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Kenneth Steiner\Documents\GitHub\stepResponse_v6.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="ClasspathContainerSelectionPage">
