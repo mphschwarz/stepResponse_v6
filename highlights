@@ -1,0 +1,29 @@
+Zeit Normierung
+Es erleichtert die Optimierung sehr, wenn der Zeitvektor normiert wird. Dies wird gemacht, indem die Zeit zwischen dem 50%-Punkt und dem Peak auf 1 gesetzt wird.
+Die Punkte der Zeitnormierung wurde gewählt, weil sie relativ gut findbar sind, auch wenn das Signal etwas verrauscht ist und in jedem Signal vorkommen.
+
+Startwerte
+Es hat sich bewährt, die Pole eines Butterworthfilters als Startwerte der Optimierung zu nehmen.
+
+Maximale Anzahl Iterationen
+Für unsere Anwendung waren 5000 Iterationen ausreichend für relativ genaue Optimierungen. 
+
+Filterung des Eingangsignals
+Für die Zeitnormierung und Totzeiterkennung ist es wichtig, dass das Soll-Signal ausreichend gefiltert ist. Beide Funktionen gehen davon aus, dass der erste Peak auch der wirklich ein Peak ist und nicht einfach nur Rauschen.
+Wenn die Optimierung nicht funktioniert ist es oftmals nötig den smoothing-Koeffizient zu erhöhen, bis die Optimierung sinnvollere Resultate liefert.
+Meistens reicht ein smoothing-Koeffizient von 25.
+
+Multithreading
+In Matlab können mehrere Optimierungen relativ einfach parallel gemacht werden. Dies wurde mit einem parfor-Loop gemacht, der jede Ordnung parallel optimiert. Der Rechenaufwand ist nicht für alle Ordnungen gleich, aber dies wird relativ gut von Matlab gehandelt und die Laufzeit kann stark reduziert werden, was für die Entwicklung sehr nützlich ist.
+
+Totzeit
+Die Totzeit ist relativ schwer zu finden und jede Ordnung hat ihre eigene ideale Totzeit. Es ist somit wichtig, dass die Totzeit möglichst genau automatisch erkannt werden kann. 
+Dies wird mit Hilfe von Shift gemacht. Shift nimmt die Schrittantwort eines Butterworthfilters und normiert den Zeitvektor, genau wie beim Soll-Signal. Die normierte Schrittantwort wird dann soweit nach rechts geschoben, dass die 50%-Punkte und die ersten Peaks des Soll-Signals und der Butterworth-Antwort übereinander liegen. Die Anzahl Samples um die nach rechts geschoben wurde stellt die Totzeit dar.
+Grundsätzlich nimmt der Offset mit steigender Ordnung zu, es gibt jedoch auch Ausnahmen.
+Während der Entwicklung gab es noch Bemühungen, anstelle eines Butterwothfilters die Schrittantwort zu nutzen die gerade optimiert wird. Es stellte sich jedoch heraus, dass dies manchmal zu Instabilität führte und das Butterworthfilter setzte sich durch.
+
+Umsetztung in Java
+- Es lohnt sich Variabeln, die eigentlich Integers sind mit Kommentaren als solche zu markieren.
+- Kommentare lohnen sich.
+- Variablen die nur zum Debuggen genutzt werden, müssen mit Kommentaren als solche markiert werden.
+- Testfunktionen sind nützlich, müssen aber als das deklariert werden um Arbeit zu sparen.
